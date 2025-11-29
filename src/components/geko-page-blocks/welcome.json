@@ -15,12 +15,8 @@
     "background_color": {
       "type": "string"
     },
-    "living_element": {
-      "type": "string"
-    },
     "content": {
       "type": "richtext"
     }
   }
 }
-

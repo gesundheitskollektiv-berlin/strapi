@@ -59,11 +59,39 @@
         }
       }
     },
+    "content": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "Event": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true,
+      "default": false
+    },
     "event_date": {
       "type": "datetime",
       "pluginOptions": {
         "i18n": {
           "localized": false
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Event"
+            },
+            true
+          ]
         }
       }
     },
@@ -73,6 +101,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Event"
+            },
+            true
+          ]
+        }
       }
     },
     "where_address": {
@@ -80,6 +118,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Event"
+            },
+            true
+          ]
         }
       }
     },
@@ -89,30 +137,15 @@
         "i18n": {
           "localized": true
         }
-      }
-    },
-    "content": {
-      "type": "richtext",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "publish": {
-      "type": "boolean",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
       },
-      "default": false
-    },
-    "publish_date": {
-      "type": "datetime",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "Event"
+            },
+            true
+          ]
         }
       }
     }

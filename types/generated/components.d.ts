@@ -81,7 +81,6 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
   attributes: {
     background_color: Schema.Attribute.String;
     content: Schema.Attribute.RichText;
-    living_element: Schema.Attribute.String;
     position: Schema.Attribute.Integer;
     title: Schema.Attribute.String;
   };

@@ -457,6 +457,14 @@ export interface ApiGekoAnnouncementGekoAnnouncement
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Event: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     event_date: Schema.Attribute.DateTime &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -486,19 +494,6 @@ export interface ApiGekoAnnouncementGekoAnnouncement
       'oneToMany',
       'api::geko-announcement.geko-announcement'
     >;
-    publish: Schema.Attribute.Boolean &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<false>;
-    publish_date: Schema.Attribute.DateTime &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     publishedAt: Schema.Attribute.DateTime;
     teaser_text: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
@@ -661,12 +656,6 @@ export interface ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung
       'oneToMany',
       'api::geko-page-datenschutzerklaerung.geko-page-datenschutzerklaerung'
     >;
-    permalink: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -712,12 +701,6 @@ export interface ApiGekoPageImpressumGekoPageImpressum
       'oneToMany',
       'api::geko-page-impressum.geko-page-impressum'
     >;
-    permalink: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -763,12 +746,6 @@ export interface ApiGekoPageKontakteGekoPageKontakte
       'oneToMany',
       'api::geko-page-kontakte.geko-page-kontakte'
     >;
-    permalink: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
