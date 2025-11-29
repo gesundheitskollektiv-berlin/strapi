@@ -1,0 +1,12 @@
+{
+  "type": "module",
+  "name": "geko-verein-migration",
+  "version": "1.0.0",
+  "description": "Migration scripts from geko-verein Jekyll to Strapi",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "form-data": "^4.0.1",
+    "gray-matter": "^4.0.3"
+  }
+}
+

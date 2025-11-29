@@ -4,8 +4,7 @@ import matter from 'gray-matter';
 import axios from 'axios';
 
 const STRAPI_URL = 'http://localhost:1337';
-const BLOCKS_DIR = '../../../geko-verein/collections/_blocks';
-const DOCUMENT_ID = 'du0cslldbjhx0mq96kjlgexi';
+const BLOCKS_DIR = '../../../../geko-verein/collections/_blocks';
 
 const api = axios.create({ baseURL: STRAPI_URL });
 
@@ -87,8 +86,6 @@ async function migrateLandingPage() {
         console.log(`⚠ No entry found for locale: ${locale}\n`);
         continue;
       }
-      
-      const entryId = existing.data.id;
       
       const blocks = parseBlocks(locale);
       console.log(`  Found ${blocks.length} blocks`);

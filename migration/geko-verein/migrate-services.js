@@ -6,8 +6,8 @@ import FormData from 'form-data';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
-const SERVICES_DIR = '../../../geko-verein/collections/_services';
-const ASSETS_DIR = '../../../geko-verein';
+const SERVICES_DIR = '../../../../geko-verein/collections/_services';
+const ASSETS_DIR = '../../../../geko-verein';
 const LOCALES = ['de', 'en', 'fr', 'ro', 'tr', 'ar'];
 
 const api = axios.create({
@@ -87,7 +87,7 @@ function loadServiceFiles() {
 function sanitizeText(value) {
   if (!value) return '';
   return value
-    .replace(/\\{%.*?%\\}/gs, '')
+    .replace(/\{%.*?%\}/gs, '')
     .trim();
 }
 

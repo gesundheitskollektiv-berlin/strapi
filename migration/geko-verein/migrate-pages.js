@@ -5,9 +5,9 @@ import axios from 'axios';
 import FormData from 'form-data';
 
 const STRAPI_URL = 'http://localhost:1337';
-const PAGES_DIR = '../../../geko-verein/collections/_pages';
-const SETTINGS_DIR = '../../../geko-verein/collections/_page_settings';
-const ASSETS_DIR = '../../../geko-verein/assets/img';
+const PAGES_DIR = '../../../../geko-verein/collections/_pages';
+const SETTINGS_DIR = '../../../../geko-verein/collections/_page_settings';
+const ASSETS_DIR = '../../../../geko-verein/assets/img';
 
 const api = axios.create({ baseURL: STRAPI_URL });
 
