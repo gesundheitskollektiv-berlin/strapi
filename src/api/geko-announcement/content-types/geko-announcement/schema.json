@@ -4,47 +4,20 @@
   "info": {
     "singularName": "geko-announcement",
     "pluralName": "geko-announcements",
-    "displayName": "Geko - Announcements",
+    "displayName": "Geko - Announcement",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "required": true
     },
-    "kicker_image": {
+    "image": {
       "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "featured_image": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "multiple": false,
       "required": false,
       "allowedTypes": [
@@ -52,102 +25,25 @@
       ]
     },
     "teaser_text": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "content": {
-      "type": "richtext",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "Event": {
-      "type": "boolean",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "required": true,
-      "default": false
+      "type": "text"
     },
     "event_date": {
-      "type": "datetime",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "Event"
-            },
-            true
-          ]
-        }
-      }
+      "type": "datetime"
     },
     "when_text": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "Event"
-            },
-            true
-          ]
-        }
-      }
+      "type": "text"
     },
     "where_address": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "Event"
-            },
-            true
-          ]
-        }
-      }
+      "type": "text"
     },
     "event_host": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "Event"
-            },
-            true
-          ]
-        }
-      }
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "publish_date": {
+      "type": "datetime"
     }
   }
 }
