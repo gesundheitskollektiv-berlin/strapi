@@ -1,7 +1,7 @@
 {
   "collectionName": "components_geko_page_blocks_news",
   "info": {
-    "displayName": "News",
+    "displayName": "Announcements",
     "description": ""
   },
   "options": {},
@@ -9,9 +9,23 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
+    "navbar_link": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "navbar_link_title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "navbar_link"
+            },
+            true
+          ]
+        }
+      }
     }
   }
 }
-

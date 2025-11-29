@@ -9,14 +9,27 @@
     "title": {
       "type": "string"
     },
-    "position": {
-      "type": "integer"
-    },
-    "background_color": {
-      "type": "string"
-    },
     "content": {
       "type": "richtext"
+    },
+    "navbar_link": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "navbar_link_title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "navbar_link"
+            },
+            true
+          ]
+        }
+      },
+      "required": false
     }
   }
 }

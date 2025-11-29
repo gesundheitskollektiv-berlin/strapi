@@ -8,6 +8,10 @@ export interface GekoPageBlocksAbout extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -19,7 +23,10 @@ export interface GekoPageBlocksCalendar extends Struct.ComponentSchema {
     displayName: 'Calendar';
   };
   attributes: {
-    content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -32,6 +39,10 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -44,6 +55,10 @@ export interface GekoPageBlocksNeighbours extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -52,10 +67,13 @@ export interface GekoPageBlocksNews extends Struct.ComponentSchema {
   collectionName: 'components_geko_page_blocks_news';
   info: {
     description: '';
-    displayName: 'News';
+    displayName: 'Announcements';
   };
   attributes: {
-    content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -68,6 +86,10 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
   };
   attributes: {
     content: Schema.Attribute.RichText;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
@@ -79,9 +101,11 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
     displayName: 'Welcome';
   };
   attributes: {
-    background_color: Schema.Attribute.String;
     content: Schema.Attribute.RichText;
-    position: Schema.Attribute.Integer;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
