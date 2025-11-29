@@ -4,11 +4,11 @@
   "info": {
     "singularName": "geko-page-landing",
     "pluralName": "geko-page-landings",
-    "displayName": "[GEKO - PAGE] Landingpage",
+    "displayName": "[GEKO - PAGE] Landing",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {
     "i18n": {
@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "blocks": {
+    "content": {
       "type": "dynamiczone",
       "pluginOptions": {
         "i18n": {

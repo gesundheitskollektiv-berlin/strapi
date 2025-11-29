@@ -65,7 +65,6 @@ export interface GekoPageBlocksFooter extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    foo: Schema.Attribute.String;
   };
 }
 
@@ -77,7 +76,7 @@ export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
   attributes: {
     image: Schema.Attribute.Media<'images'>;
     project_url: Schema.Attribute.String;
-    Title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
