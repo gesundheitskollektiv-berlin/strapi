@@ -18,26 +18,15 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "position": {
-      "type": "integer",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
-    },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
+    "icon_name": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -46,20 +35,57 @@
     },
     "featured_image": {
       "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
+        }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "inhouse": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": false
+    },
+    "external_link_only": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
         }
       }
     },
-    "blurb": {
+    "project_url": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "description": {
       "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
         }
       }
     },
@@ -69,6 +95,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     },
     "offer": {
@@ -76,6 +112,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
         }
       }
     },
@@ -85,6 +131,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     },
     "who": {
@@ -92,6 +148,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
         }
       }
     },
@@ -101,8 +167,17 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     }
   }
 }
-
