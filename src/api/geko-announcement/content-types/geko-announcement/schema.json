@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "announcements",
+  "collectionName": "geko_announcements",
   "info": {
-    "singularName": "announcement",
-    "pluralName": "announcements",
-    "displayName": "Announcement",
+    "singularName": "geko-announcement",
+    "pluralName": "geko-announcements",
+    "displayName": "Geko - Announcements",
     "description": ""
   },
   "options": {
@@ -18,34 +18,38 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "kicker_image": {
       "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "featured_image": {
       "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "teaser_text": {
       "type": "text",
@@ -97,12 +101,12 @@
     },
     "publish": {
       "type": "boolean",
-      "default": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      }
+      },
+      "default": false
     },
     "publish_date": {
       "type": "datetime",
@@ -114,4 +118,3 @@
     }
   }
 }
-

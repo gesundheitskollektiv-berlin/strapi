@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "services",
+  "collectionName": "geko_services",
   "info": {
-    "singularName": "service",
-    "pluralName": "services",
-    "displayName": "Service",
+    "singularName": "geko-service",
+    "pluralName": "geko-services",
+    "displayName": "Geko - Services",
     "description": ""
   },
   "options": {
@@ -18,12 +18,12 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "position": {
       "type": "integer",
@@ -35,25 +35,29 @@
     },
     "icon": {
       "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "featured_image": {
       "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "blurb": {
       "type": "richtext",
@@ -105,4 +109,3 @@
     }
   }
 }
-

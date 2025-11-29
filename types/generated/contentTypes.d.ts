@@ -430,14 +430,14 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAnnouncementAnnouncement
+export interface ApiGekoAnnouncementGekoAnnouncement
   extends Struct.CollectionTypeSchema {
-  collectionName: 'announcements';
+  collectionName: 'geko_announcements';
   info: {
     description: '';
-    displayName: 'Announcement';
-    pluralName: 'announcements';
-    singularName: 'announcement';
+    displayName: 'Geko - Announcements';
+    pluralName: 'geko-announcements';
+    singularName: 'geko-announcement';
   };
   options: {
     draftAndPublish: true;
@@ -484,7 +484,7 @@ export interface ApiAnnouncementAnnouncement
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::announcement.announcement'
+      'api::geko-announcement.geko-announcement'
     >;
     publish: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
@@ -787,7 +787,7 @@ export interface ApiGekoPageLandingGekoPageLanding
   collectionName: 'geko_page_landing';
   info: {
     description: '';
-    displayName: '[GEKO - PAGE] Landing';
+    displayName: '[GEKO - PAGE] Landingpage';
     pluralName: 'geko-page-landings';
     singularName: 'geko-page-landing';
   };
@@ -837,13 +837,13 @@ export interface ApiGekoPageLandingGekoPageLanding
   };
 }
 
-export interface ApiServiceService extends Struct.CollectionTypeSchema {
-  collectionName: 'services';
+export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
+  collectionName: 'geko_services';
   info: {
     description: '';
-    displayName: 'Service';
-    pluralName: 'services';
-    singularName: 'service';
+    displayName: 'Geko - Services';
+    pluralName: 'geko-services';
+    singularName: 'geko-service';
   };
   options: {
     draftAndPublish: true;
@@ -884,7 +884,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::service.service'
+      'api::geko-service.geko-service'
     >;
     offer: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
@@ -1440,13 +1440,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::announcement.announcement': ApiAnnouncementAnnouncement;
+      'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
       'api::geko-meta.geko-meta': ApiGekoMetaGekoMeta;
       'api::geko-page-datenschutzerklaerung.geko-page-datenschutzerklaerung': ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung;
       'api::geko-page-impressum.geko-page-impressum': ApiGekoPageImpressumGekoPageImpressum;
       'api::geko-page-kontakte.geko-page-kontakte': ApiGekoPageKontakteGekoPageKontakte;
       'api::geko-page-landing.geko-page-landing': ApiGekoPageLandingGekoPageLanding;
-      'api::service.service': ApiServiceService;
+      'api::geko-service.geko-service': ApiGekoServiceGekoService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
