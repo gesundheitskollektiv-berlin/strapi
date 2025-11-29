@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_geko_page_blocks_welcomes",
+  "info": {
+    "displayName": "Welcome",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "position": {
+      "type": "integer"
+    },
+    "background_color": {
+      "type": "string"
+    },
+    "living_element": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
+

@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "geko_page_datenschutzerklaerung",
+  "info": {
+    "singularName": "geko-page-datenschutzerklaerung",
+    "pluralName": "geko-page-datenschutzerklaerungen",
+    "displayName": "[GEKO - PAGE] Datenschutzerklärung",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "permalink": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "content": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

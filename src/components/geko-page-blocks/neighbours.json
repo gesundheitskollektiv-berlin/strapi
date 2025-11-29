@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_geko_page_blocks_neighbours",
+  "info": {
+    "displayName": "Neighbours",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
+

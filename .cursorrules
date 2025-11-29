@@ -8,7 +8,7 @@
 
 ## Requirements
 
-- Keep answers short and concise
+- Keep answers short and concise. We want to save as many output tokens as possible (very important)!!!
 - Do not create long codes in your replies unless explicitly being told to
 
 ## Clean Code Principles

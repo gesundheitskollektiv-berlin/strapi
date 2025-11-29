@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "geko_page_landing",
+  "info": {
+    "singularName": "geko-page-landing",
+    "pluralName": "geko-page-landings",
+    "displayName": "[GEKO - PAGE] Landing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "content": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "geko-page-blocks.welcome",
+        "geko-page-blocks.about",
+        "geko-page-blocks.calendar",
+        "geko-page-blocks.news",
+        "geko-page-blocks.contact",
+        "geko-page-blocks.services",
+        "geko-page-blocks.neighbours"
+      ]
+    }
+  }
+}
