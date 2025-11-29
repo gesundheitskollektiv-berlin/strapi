@@ -450,6 +450,9 @@ export interface ApiGekoAnnouncementGekoAnnouncement
     event_date: Schema.Attribute.DateTime;
     event_host: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images'>;
+    is_event: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

@@ -79,10 +79,13 @@ async function migrateWithImages() {
       imageId = await uploadImage(frontmatter.kicker_image, title);
     }
 
+    const isEvent = !!frontmatter.event_date;
+
     const payload = {
       data: {
         title,
         image: imageId,
+        is_event: isEvent,
         teaser_text: frontmatter.teaser_text || '',
         event_date: frontmatter.event_date || null,
         when_text: frontmatter.when_text || '',
