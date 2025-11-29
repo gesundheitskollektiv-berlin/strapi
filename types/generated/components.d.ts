@@ -7,6 +7,9 @@ export interface GekoPageBlocksAbout extends Struct.ComponentSchema {
     displayName: 'About';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -23,6 +26,9 @@ export interface GekoPageBlocksCalendar extends Struct.ComponentSchema {
     displayName: 'Calendar';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -38,12 +44,40 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
     displayName: 'Contact';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface GekoPageBlocksFooter extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    foo: Schema.Attribute.String;
+  };
+}
+
+export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_funding_projects';
+  info: {
+    displayName: 'Funding Project';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    project_url: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
   };
 }
 
@@ -54,6 +88,9 @@ export interface GekoPageBlocksNeighbours extends Struct.ComponentSchema {
     displayName: 'Neighbours';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -70,6 +107,9 @@ export interface GekoPageBlocksNews extends Struct.ComponentSchema {
     displayName: 'Announcements';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -85,12 +125,31 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
     displayName: 'Services';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface GekoPageBlocksSupporters extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_supporters';
+  info: {
+    displayName: 'Supporters';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    supporters: Schema.Attribute.Component<
+      'geko-page-blocks.funding-project',
+      true
+    >;
   };
 }
 
@@ -101,6 +160,9 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
     displayName: 'Welcome';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
     content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -116,9 +178,12 @@ declare module '@strapi/strapi' {
       'geko-page-blocks.about': GekoPageBlocksAbout;
       'geko-page-blocks.calendar': GekoPageBlocksCalendar;
       'geko-page-blocks.contact': GekoPageBlocksContact;
+      'geko-page-blocks.footer': GekoPageBlocksFooter;
+      'geko-page-blocks.funding-project': GekoPageBlocksFundingProject;
       'geko-page-blocks.neighbours': GekoPageBlocksNeighbours;
       'geko-page-blocks.news': GekoPageBlocksNews;
       'geko-page-blocks.services': GekoPageBlocksServices;
+      'geko-page-blocks.supporters': GekoPageBlocksSupporters;
       'geko-page-blocks.welcome': GekoPageBlocksWelcome;
     }
   }

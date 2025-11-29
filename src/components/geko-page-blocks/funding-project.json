@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_geko_page_blocks_funding_projects",
+  "info": {
+    "displayName": "Funding Project"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "project_url": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

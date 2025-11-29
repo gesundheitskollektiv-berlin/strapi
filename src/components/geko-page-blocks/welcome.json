@@ -30,6 +30,16 @@
         }
       },
       "required": false
+    },
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "white",
+        "red",
+        "yellow",
+        "blue",
+        "green"
+      ]
     }
   }
 }

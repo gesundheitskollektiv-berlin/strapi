@@ -16,15 +16,7 @@
     }
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "content": {
+    "blocks": {
       "type": "dynamiczone",
       "pluginOptions": {
         "i18n": {
@@ -38,7 +30,9 @@
         "geko-page-blocks.news",
         "geko-page-blocks.contact",
         "geko-page-blocks.services",
-        "geko-page-blocks.neighbours"
+        "geko-page-blocks.neighbours",
+        "geko-page-blocks.supporters",
+        "geko-page-blocks.footer"
       ]
     }
   }

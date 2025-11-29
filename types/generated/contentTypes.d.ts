@@ -643,7 +643,7 @@ export interface ApiGekoPageLandingGekoPageLanding
     };
   };
   attributes: {
-    content: Schema.Attribute.DynamicZone<
+    blocks: Schema.Attribute.DynamicZone<
       [
         'geko-page-blocks.welcome',
         'geko-page-blocks.about',
@@ -652,6 +652,8 @@ export interface ApiGekoPageLandingGekoPageLanding
         'geko-page-blocks.contact',
         'geko-page-blocks.services',
         'geko-page-blocks.neighbours',
+        'geko-page-blocks.supporters',
+        'geko-page-blocks.footer',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -668,12 +670,6 @@ export interface ApiGekoPageLandingGekoPageLanding
       'api::geko-page-landing.geko-page-landing'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

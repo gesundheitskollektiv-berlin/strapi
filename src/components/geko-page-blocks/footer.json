@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_geko_page_blocks_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "foo": {
+      "type": "string"
+    },
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "white",
+        "red",
+        "yellow",
+        "blue",
+        "green"
+      ]
+    }
+  },
+  "config": {}
+}
