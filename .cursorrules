@@ -1,0 +1,19 @@
+# Strapi v5 Project
+
+## Context
+
+- This is a Strapi v5 application
+- Database: SQLite
+- Language: JavaScript (no TypeScript)
+
+## Requirements
+
+- Keep answers short and concise
+- Do not create long codes in your replies unless explicitly being told to
+
+## Clean Code Principles
+
+- Stay DRY (Don't Repeat Yourself)
+- You probably don't have to write a lot of custom code
+- Leverage Strapi's built-in features and APIs before creating custom solutions
+
