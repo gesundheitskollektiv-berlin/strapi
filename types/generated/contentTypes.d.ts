@@ -507,6 +507,59 @@ export interface ApiGekoMetaGekoMeta extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiGekoPageAboutGekoPageAbout extends Struct.SingleTypeSchema {
+  collectionName: 'geko_page_abouts';
+  info: {
+    displayName: '[GEKO - PAGE] About us';
+    pluralName: 'geko-page-abouts';
+    singularName: 'geko-page-about';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-about.geko-page-about'
+    >;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<true>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung
   extends Struct.SingleTypeSchema {
   collectionName: 'geko_page_datenschutzerklaerung';
@@ -1229,6 +1282,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
       'api::geko-meta.geko-meta': ApiGekoMetaGekoMeta;
+      'api::geko-page-about.geko-page-about': ApiGekoPageAboutGekoPageAbout;
       'api::geko-page-datenschutzerklaerung.geko-page-datenschutzerklaerung': ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung;
       'api::geko-page-impressum.geko-page-impressum': ApiGekoPageImpressumGekoPageImpressum;
       'api::geko-page-landing.geko-page-landing': ApiGekoPageLandingGekoPageLanding;
