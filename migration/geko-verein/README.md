@@ -45,19 +45,19 @@ node migrate-landing-blocks.js
 - For announcements/services: Set `STRAPI_TOKEN` environment variable
 - Token needs full access permissions
 
+## Shared Helpers
+
+Common logic (Strapi client, file loading, image uploads, helpers) lives in `../shared/` and is imported by each migration script. Add new helpers there when extending migrations.
+
 ## Image Handling
 
-**Note:** Due to Strapi v5 REST API limitations, images upload to `public/uploads/` (root folder), not subfolders. The `path` parameter is ignored by the upload API. To organize images:
-
-1. Manually create folders in Strapi Media Library (Settings → Media Library)
-2. Move images via UI, or
-3. Accept flat structure (all references work correctly)
+Each migration uploads assets into its own Media Library folder (`Announcements`, `Services`, `Pages`, etc.). Folders are created automatically if missing, and uploads are cached to avoid duplicates.
 
 ## Technical Notes
 
 - All scripts use REST API via axios (not Document Service API)
 - Document Service API approach didn't work due to Node.js ESM + Strapi v5 compatibility issues
-- Image caching prevents duplicate uploads
+- Shared upload helper prevents duplicate uploads and enforces folder placement
 - Missing images are logged but don't stop migration
 - Path references: `../../../../geko-verein/` (relative to script location)
 

@@ -1,102 +1,20 @@
-import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
-import axios from 'axios';
-import FormData from 'form-data';
+import { createStrapiClient } from '../shared/api.js';
+import { loadLocalizedEntries } from '../shared/file-helpers.js';
+import { uploadImageFromSource } from '../shared/image-upload.js';
+import { bool, sanitizeText } from '../shared/utils.js';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
-const SERVICES_DIR = '../../../../geko-verein/collections/_services';
-const ASSETS_DIR = '../../../../geko-verein';
+const GEKO_ROOT = path.resolve('../../../../geko-verein');
+const SERVICES_DIR = path.join(GEKO_ROOT, 'collections/_services');
 const LOCALES = ['de', 'en', 'fr', 'ro', 'tr', 'ar'];
 
-const api = axios.create({
-  baseURL: STRAPI_URL,
-  headers: {
-    Authorization: `Bearer ${STRAPI_TOKEN}`,
-    'Content-Type': 'application/json',
-  },
-});
-const imageCache = new Map();
-
-const bool = (value, fallback = false) => {
-  if (value === undefined || value === null) return fallback;
-  if (typeof value === 'boolean') return value;
-  if (typeof value === 'string') {
-    const lowered = value.toLowerCase();
-    if (['true', '1', 'yes'].includes(lowered)) return true;
-    if (['false', '0', 'no'].includes(lowered)) return false;
-  }
-  return Boolean(value);
-};
-
-async function uploadImage(imagePath) {
-  if (!imagePath) return null;
-  if (imageCache.has(imagePath)) return imageCache.get(imagePath);
-
-  const cleanPath = imagePath.startsWith('/')
-    ? imagePath.replace(/^\/+/, '')
-    : imagePath;
-  const fullPath = path.join(ASSETS_DIR, cleanPath);
-
-  if (!fs.existsSync(fullPath)) {
-    console.log(`  ⚠ Image not found: ${imagePath}`);
-    imageCache.set(imagePath, null);
-    return null;
-  }
-
-  try {
-    const formData = new FormData();
-    formData.append('files', fs.createReadStream(fullPath));
-    formData.append('fileInfo', JSON.stringify({ alternativeText: path.basename(cleanPath) }));
-
-    const response = await axios.post(`${STRAPI_URL}/api/upload`, formData, {
-      headers: formData.getHeaders(),
-    });
-
-    const id = response.data[0].id;
-    imageCache.set(imagePath, id);
-    console.log(`  ✓ Uploaded image: ${cleanPath}`);
-    return id;
-  } catch (error) {
-    console.error(`  ✗ Failed to upload ${cleanPath}`, error.response?.data || error.message);
-    imageCache.set(imagePath, null);
-    return null;
-  }
-}
-
-function loadServiceFiles() {
-  const entries = {};
-
-  const files = fs.readdirSync(SERVICES_DIR).filter((file) => file.endsWith('.md'));
-  for (const file of files) {
-    const match = file.match(/^(.*)\.([a-z]{2})\.md$/);
-    if (!match) continue;
-
-    const [, slug, locale] = match;
-    if (!LOCALES.includes(locale)) continue;
-
-    const filepath = path.join(SERVICES_DIR, file);
-    const fileContent = fs.readFileSync(filepath, 'utf8');
-    const { data } = matter(fileContent);
-
-    if (!entries[slug]) entries[slug] = {};
-    entries[slug][locale] = data;
-  }
-
-  return entries;
-}
-
-function sanitizeText(value) {
-  if (!value) return '';
-  return value
-    .replace(/\{%.*?%\}/gs, '')
-    .trim();
-}
+const api = createStrapiClient(STRAPI_URL, STRAPI_TOKEN);
 
 function buildPayload(data) {
   const isExternal = bool(data.external_service || data.external_link_only, false);
-  
+
   return {
     title: data.title || 'Ohne Titel',
     icon_name: data.icon ? path.basename(data.icon) : (data.icon_name || null),
@@ -120,29 +38,31 @@ async function createService(slug, localesData) {
   }
 
   const baseData = localesData[baseLocale];
-  
   const payload = buildPayload(baseData);
   payload.locale = baseLocale;
-  
-  // Only upload image if not external service
+
   if (!bool(baseData.external_service || baseData.external_link_only, false)) {
-    const imageId = await uploadImage(baseData.featured_image);
+    const imageId = await uploadImageFromSource({
+      api,
+      rootDir: GEKO_ROOT,
+      relativePath: baseData.featured_image,
+      folderName: 'Services',
+      altText: baseData.featured_image_alt,
+    });
     if (imageId) payload.image = imageId;
   }
 
   try {
     const response = await api.post('/api/geko-services', { data: payload });
     const baseEntry = response.data.data;
-    const baseId = baseEntry.id;
     const documentId = baseEntry.documentId;
-    console.log(`✓ Created service ${slug} (${baseLocale}) -> ${baseId}`);
+    console.log(`✓ Created service ${slug} (${baseLocale}) -> ${baseEntry.id}`);
 
     for (const locale of LOCALES) {
       if (locale === baseLocale) continue;
       if (!localesData[locale]) continue;
 
-      const localizedData = localesData[locale];
-      const localizedPayload = buildPayload(localizedData);
+      const localizedPayload = buildPayload(localesData[locale]);
 
       try {
         await api.put(`/api/geko-services/${documentId}?locale=${locale}`, { data: localizedPayload });
@@ -158,7 +78,7 @@ async function createService(slug, localesData) {
 
 async function migrateServices() {
   console.log('\n=== Migrating Services ===\n');
-  const services = loadServiceFiles();
+  const services = loadLocalizedEntries(SERVICES_DIR, LOCALES);
   const slugs = Object.keys(services);
   console.log(`Found ${slugs.length} service groups\n`);
 

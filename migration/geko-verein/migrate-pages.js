@@ -1,62 +1,53 @@
-import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
-import axios from 'axios';
-import FormData from 'form-data';
+import { createStrapiClient } from '../shared/api.js';
+import { readMarkdownFile } from '../shared/file-helpers.js';
+import { uploadImageFromSource } from '../shared/image-upload.js';
 
 const STRAPI_URL = 'http://localhost:1337';
-const PAGES_DIR = '../../../../geko-verein/collections/_pages';
-const SETTINGS_DIR = '../../../../geko-verein/collections/_page_settings';
-const ASSETS_DIR = '../../../../geko-verein/assets/img';
+const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
+const GEKO_ROOT = path.resolve('../../../../geko-verein');
+const PAGES_DIR = path.join(GEKO_ROOT, 'collections/_pages');
+const SETTINGS_DIR = path.join(GEKO_ROOT, 'collections/_page_settings');
 
-const api = axios.create({ baseURL: STRAPI_URL });
+const api = createStrapiClient(STRAPI_URL, STRAPI_TOKEN);
 
 async function uploadBanner(imagePath) {
   if (!imagePath) return null;
-  
-  const fullPath = path.join(ASSETS_DIR, path.basename(imagePath));
-  if (!fs.existsSync(fullPath)) {
-    console.log(`⚠ Banner not found: ${imagePath}`);
-    return null;
-  }
 
-  try {
-    const formData = new FormData();
-    formData.append('files', fs.createReadStream(fullPath));
-    formData.append('fileInfo', JSON.stringify({ alternativeText: 'Geko Banner' }));
-
-    const response = await axios.post(`${STRAPI_URL}/api/upload`, formData, {
-      headers: formData.getHeaders()
-    });
-    return response.data[0].id;
-  } catch (error) {
-    console.error(`✗ Failed to upload banner`);
-    return null;
-  }
+  return uploadImageFromSource({
+    api,
+    rootDir: GEKO_ROOT,
+    relativePath: imagePath,
+    folderName: 'Pages',
+    altText: 'Geko Banner',
+  });
 }
 
 async function migrateMeta() {
   console.log('\n=== Migrating Meta ===');
-  
-  const file = fs.readFileSync(path.join(SETTINGS_DIR, 'page_settings.md'), 'utf8');
-  const { data } = matter(file);
 
-  const bannerId = await uploadBanner(data.page_banner);
+  const settingsFile = readMarkdownFile(path.join(SETTINGS_DIR, 'page_settings.md'));
+  if (!settingsFile) {
+    console.log('⚠ page_settings.md not found');
+    return;
+  }
+
+  const bannerId = await uploadBanner(settingsFile.data.page_banner);
 
   const payload = {
     data: {
-      company: data.company,
-      street: data.street,
-      postal: data.postal,
-      city: data.city,
-      phone: data.phone,
-      email: data.email,
-      press_email: data.press_email,
-      facebook: data.facebook,
-      twitter: data.twitter,
-      instagram: data.instagram,
-      page_banner: bannerId
-    }
+      company: settingsFile.data.company,
+      street: settingsFile.data.street,
+      postal: settingsFile.data.postal,
+      city: settingsFile.data.city,
+      phone: settingsFile.data.phone,
+      email: settingsFile.data.email,
+      press_email: settingsFile.data.press_email,
+      facebook: settingsFile.data.facebook,
+      twitter: settingsFile.data.twitter,
+      instagram: settingsFile.data.instagram,
+      page_banner: bannerId,
+    },
   };
 
   try {
@@ -69,23 +60,20 @@ async function migrateMeta() {
 
 async function migratePage(pageName, apiEndpoint) {
   console.log(`\n=== Migrating ${pageName} ===`);
-  
-  const file = `${pageName.toLowerCase()}.de.md`;
-  const filePath = path.join(PAGES_DIR, file);
-  
-  if (!fs.existsSync(filePath)) {
-    console.log(`⚠ File not found: ${file}`);
+
+  const filePath = path.join(PAGES_DIR, `${pageName.toLowerCase()}.de.md`);
+  const file = readMarkdownFile(filePath);
+
+  if (!file) {
+    console.log(`⚠ File not found: ${pageName}.de.md`);
     return;
   }
 
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  const { data: frontmatter, content } = matter(fileContent);
-
   const payload = {
     data: {
-      title: frontmatter.title,
-      content: content.trim()
-    }
+      title: file.data.title,
+      content: file.content,
+    },
   };
 
   try {

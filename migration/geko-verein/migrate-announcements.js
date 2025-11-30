@@ -1,82 +1,21 @@
-import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
-import axios from 'axios';
-import FormData from 'form-data';
+import { createStrapiClient } from '../shared/api.js';
+import { loadAllMarkdown } from '../shared/file-helpers.js';
+import { uploadImageFromSource } from '../shared/image-upload.js';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
-const SOURCE_DIR = '../../../../geko-verein/collections/_announcements';
-const ASSETS_DIR = '../../../../geko-verein';
-const LOCALES = ['de', 'en', 'fr', 'ro', 'tr', 'ar'];
+const GEKO_ROOT = path.resolve('../../../../geko-verein');
+const SOURCE_DIR = path.join(GEKO_ROOT, 'collections/_announcements');
 
-const api = axios.create({
-  baseURL: STRAPI_URL,
-  headers: {
-    Authorization: `Bearer ${STRAPI_TOKEN}`,
-    'Content-Type': 'application/json',
-  },
-});
-
-const imageCache = new Map();
-
-async function uploadImage(imagePath, altText = '') {
-  if (!imagePath) return null;
-  
-  const cacheKey = `announcements/${imagePath}`;
-  if (imageCache.has(cacheKey)) {
-    return imageCache.get(cacheKey);
-  }
-
-  const cleanPath = imagePath.startsWith('/')
-    ? imagePath.replace(/^\/+/, '')
-    : imagePath;
-  const fullPath = path.join(ASSETS_DIR, cleanPath);
-
-  if (!fs.existsSync(fullPath)) {
-    console.log(`  ⚠ Image not found: ${imagePath}`);
-    imageCache.set(cacheKey, null);
-    return null;
-  }
-
-  try {
-    const formData = new FormData();
-    formData.append('files', fs.createReadStream(fullPath));
-    formData.append('path', 'announcements');
-    formData.append('fileInfo', JSON.stringify({ 
-      alternativeText: altText || path.basename(cleanPath) 
-    }));
-
-    const response = await axios.post(`${STRAPI_URL}/api/upload`, formData, {
-      headers: {
-        ...formData.getHeaders(),
-        Authorization: `Bearer ${STRAPI_TOKEN}`,
-      },
-    });
-
-    const fileId = response.data[0].id;
-    imageCache.set(cacheKey, fileId);
-    console.log(`  ✓ Uploaded: ${cleanPath}`);
-    return fileId;
-  } catch (error) {
-    console.error(`  ✗ Upload failed ${cleanPath}:`, error.message);
-    imageCache.set(cacheKey, null);
-    return null;
-  }
-}
+const api = createStrapiClient(STRAPI_URL, STRAPI_TOKEN);
 
 function loadAnnouncementFiles() {
-  const entries = [];
-  const files = fs.readdirSync(SOURCE_DIR).filter((f) => f.endsWith('.md'));
-
-  for (const file of files) {
-    const filePath = path.join(SOURCE_DIR, file);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContent);
-    entries.push({ slug: file.replace('.md', ''), ...data, content: content.trim() });
-  }
-
-  return entries;
+  return loadAllMarkdown(SOURCE_DIR).map((entry) => ({
+    slug: entry.slug,
+    ...entry.data,
+    content: entry.content,
+  }));
 }
 
 function buildPayload(data) {
@@ -101,7 +40,13 @@ async function createAnnouncement(data) {
   
   // Upload image if present (prefer featured_image, fallback to kicker_image)
   if (payload.imageSource) {
-    const imageId = await uploadImage(payload.imageSource, payload.imageAlt);
+    const imageId = await uploadImageFromSource({
+      api,
+      rootDir: GEKO_ROOT,
+      relativePath: payload.imageSource,
+      folderName: 'Announcements',
+      altText: payload.imageAlt,
+    });
     if (imageId) {
       payload.image = imageId;
     }
