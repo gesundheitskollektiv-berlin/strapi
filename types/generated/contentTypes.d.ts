@@ -449,9 +449,8 @@ export interface ApiGekoAnnouncementGekoAnnouncement
       Schema.Attribute.Private;
     event_date: Schema.Attribute.DateTime;
     event_host: Schema.Attribute.String;
-    featured_image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images'>;
     is_event: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    kicker_image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -806,13 +805,13 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
           localized: false;
         };
       }>;
-    featured_image: Schema.Attribute.Media<'images'> &
+    icon_name: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    icon_name: Schema.Attribute.String &
+    image: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;

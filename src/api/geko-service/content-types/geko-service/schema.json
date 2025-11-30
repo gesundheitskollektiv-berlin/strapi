@@ -33,19 +33,6 @@
         }
       }
     },
-    "featured_image": {
-      "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "inhouse": {
       "type": "boolean",
       "pluginOptions": {
@@ -70,6 +57,29 @@
           "localized": false
         }
       }
+    },
+    "image": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
+      },
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "richtext",

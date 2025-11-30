@@ -12,7 +12,10 @@ const LOCALES = ['de', 'en', 'fr', 'ro', 'tr', 'ar'];
 
 const api = axios.create({
   baseURL: STRAPI_URL,
-  headers: STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : undefined,
+  headers: {
+    Authorization: `Bearer ${STRAPI_TOKEN}`,
+    'Content-Type': 'application/json',
+  },
 });
 const imageCache = new Map();
 
@@ -91,12 +94,14 @@ function sanitizeText(value) {
     .trim();
 }
 
-function buildPayload(data, locale) {
+function buildPayload(data) {
+  const isExternal = bool(data.external_service || data.external_link_only, false);
+  
   return {
     title: data.title || 'Ohne Titel',
     icon_name: data.icon ? path.basename(data.icon) : (data.icon_name || null),
     inhouse: bool(data.inhouse, true),
-    external_link_only: bool(data.external_link_only, false),
+    external_link_only: isExternal,
     project_url: data.project_url || null,
     description: sanitizeText(data.blurb || data.description || ''),
     languages: sanitizeText(data.languages || ''),
@@ -104,7 +109,6 @@ function buildPayload(data, locale) {
     when: sanitizeText(data.when || ''),
     who: sanitizeText(data.who || ''),
     where_address: sanitizeText(data.where_address || ''),
-    locale,
   };
 }
 
@@ -116,10 +120,15 @@ async function createService(slug, localesData) {
   }
 
   const baseData = localesData[baseLocale];
-  const featuredImageId = await uploadImage(baseData.featured_image);
-
-  const payload = buildPayload(baseData, baseLocale);
-  if (featuredImageId) payload.featured_image = featuredImageId;
+  
+  const payload = buildPayload(baseData);
+  payload.locale = baseLocale;
+  
+  // Only upload image if not external service
+  if (!bool(baseData.external_service || baseData.external_link_only, false)) {
+    const imageId = await uploadImage(baseData.featured_image);
+    if (imageId) payload.image = imageId;
+  }
 
   try {
     const response = await api.post('/api/geko-services', { data: payload });
@@ -133,8 +142,7 @@ async function createService(slug, localesData) {
       if (!localesData[locale]) continue;
 
       const localizedData = localesData[locale];
-      const localizedPayload = buildPayload(localizedData, locale);
-      delete localizedPayload.locale;
+      const localizedPayload = buildPayload(localizedData);
 
       try {
         await api.put(`/api/geko-services/${documentId}?locale=${locale}`, { data: localizedPayload });

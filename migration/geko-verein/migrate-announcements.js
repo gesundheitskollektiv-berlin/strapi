@@ -90,39 +90,26 @@ function buildPayload(data) {
     content: data.content || '',
     is_event: !!data.event_date,
     publishedAt: data.publish_date ? new Date(data.publish_date) : new Date(),
-    featured_image: data.featured_image,
-    kicker_image: data.kicker_image,
-    featured_image_alt: data.featured_image_alt,
-    kicker_image_alt: data.kicker_image_alt,
+    // Image handling - prefer featured_image, fallback to kicker_image
+    imageSource: data.featured_image || data.kicker_image,
+    imageAlt: data.featured_image_alt || data.kicker_image_alt || '',
   };
 }
 
 async function createAnnouncement(data) {
   const payload = buildPayload(data);
   
-  // Upload featured_image if present
-  if (payload.featured_image) {
-    const imageId = await uploadImage(payload.featured_image, payload.featured_image_alt || '');
+  // Upload image if present (prefer featured_image, fallback to kicker_image)
+  if (payload.imageSource) {
+    const imageId = await uploadImage(payload.imageSource, payload.imageAlt);
     if (imageId) {
-      payload.featured_image = imageId;
-    } else {
-      delete payload.featured_image;
+      payload.image = imageId;
     }
   }
   
-  // Upload kicker_image if present
-  if (payload.kicker_image) {
-    const imageId = await uploadImage(payload.kicker_image, payload.kicker_image_alt || '');
-    if (imageId) {
-      payload.kicker_image = imageId;
-    } else {
-      delete payload.kicker_image;
-    }
-  }
-  
-  // Remove temp alt fields
-  delete payload.featured_image_alt;
-  delete payload.kicker_image_alt;
+  // Remove temp fields
+  delete payload.imageSource;
+  delete payload.imageAlt;
 
   try {
     await api.post('/api/geko-announcements', { data: { ...payload, locale: 'de' } });
