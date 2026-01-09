@@ -10,11 +10,12 @@ export interface GekoPageBlocksAbout extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
+    team_image: Schema.Attribute.Media<'images'>;
     title: Schema.Attribute.String;
   };
 }
@@ -47,7 +48,7 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -77,6 +78,8 @@ export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images'>;
     project_url: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    width: Schema.Attribute.Enumeration<['half', 'full']> &
+      Schema.Attribute.DefaultTo<'half'>;
   };
 }
 
@@ -90,7 +93,7 @@ export interface GekoPageBlocksNeighbours extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -127,7 +130,6 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    content: Schema.Attribute.RichText;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -162,7 +164,7 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;

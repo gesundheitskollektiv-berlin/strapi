@@ -9,9 +9,6 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
     "navbar_link": {
       "type": "boolean",
       "required": true,

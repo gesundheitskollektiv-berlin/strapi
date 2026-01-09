@@ -1,15 +1,9 @@
 'use strict';
 
 /**
- * geko-meta router
+ * geko-job router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::geko-meta.geko-meta');
-
-
-
-
-
-
+module.exports = createCoreRouter('api::geko-job.geko-job');

@@ -2,7 +2,7 @@ import path from 'path';
 import { createStrapiClient } from '../shared/api.js';
 import { loadLocalizedEntries } from '../shared/file-helpers.js';
 import { uploadImageFromSource } from '../shared/image-upload.js';
-import { bool, sanitizeText } from '../shared/utils.js';
+import { bool, sanitizeText, markdownToBlocks } from '../shared/utils.js';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
@@ -21,11 +21,11 @@ function buildPayload(data) {
     inhouse: bool(data.inhouse, true),
     external_link_only: isExternal,
     project_url: data.project_url || null,
-    description: sanitizeText(data.blurb || data.description || ''),
+    description: markdownToBlocks(data.blurb || data.description || ''),
     languages: sanitizeText(data.languages || ''),
-    offer: sanitizeText(data.offer || ''),
+    offer: markdownToBlocks(data.offer || ''),
     when: sanitizeText(data.when || ''),
-    who: sanitizeText(data.who || ''),
+    who: markdownToBlocks(data.who || ''),
     where_address: sanitizeText(data.where_address || ''),
   };
 }
@@ -91,4 +91,9 @@ async function migrateServices() {
 }
 
 migrateServices();
+
+
+
+
+
 

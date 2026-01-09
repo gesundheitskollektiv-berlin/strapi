@@ -24,19 +24,11 @@
         }
       }
     },
-    "permalink": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "content": {
-      "type": "richtext",
+      "type": "blocks",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       }
     }

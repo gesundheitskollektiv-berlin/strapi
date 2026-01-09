@@ -9,8 +9,12 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
+    "team_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "navbar_link": {
       "type": "boolean",
@@ -39,6 +43,9 @@
         "blue",
         "green"
       ]
+    },
+    "content": {
+      "type": "blocks"
     }
   }
 }

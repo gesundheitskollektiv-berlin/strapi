@@ -17,6 +17,14 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "width": {
+      "type": "enumeration",
+      "default": "half",
+      "enum": [
+        "half",
+        "full"
+      ]
     }
   },
   "config": {}

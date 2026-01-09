@@ -43,11 +43,11 @@
     "event_host": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
     "publish_date": {
       "type": "datetime"
+    },
+    "content": {
+      "type": "blocks"
     }
   }
 }

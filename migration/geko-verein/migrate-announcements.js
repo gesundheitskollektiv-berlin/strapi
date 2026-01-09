@@ -2,6 +2,7 @@ import path from 'path';
 import { createStrapiClient } from '../shared/api.js';
 import { loadAllMarkdown } from '../shared/file-helpers.js';
 import { uploadImageFromSource } from '../shared/image-upload.js';
+import { markdownToBlocks } from '../shared/utils.js';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
@@ -26,7 +27,7 @@ function buildPayload(data) {
     when_text: data.when_text || '',
     where_address: data.where_address || '',
     event_host: data.event_host || '',
-    content: data.content || '',
+    content: markdownToBlocks(data.content),
     is_event: !!data.event_date,
     publishedAt: data.publish_date ? new Date(data.publish_date) : new Date(),
     // Image handling - prefer featured_image, fallback to kicker_image

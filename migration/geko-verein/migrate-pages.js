@@ -2,6 +2,7 @@ import path from 'path';
 import { createStrapiClient } from '../shared/api.js';
 import { readMarkdownFile } from '../shared/file-helpers.js';
 import { uploadImageFromSource } from '../shared/image-upload.js';
+import { markdownToBlocks } from '../shared/utils.js';
 
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
@@ -72,7 +73,7 @@ async function migratePage(pageName, apiEndpoint) {
   const payload = {
     data: {
       title: file.data.title,
-      content: file.content,
+      content: markdownToBlocks(file.content),
     },
   };
 
@@ -92,4 +93,9 @@ async function migrateAll() {
 }
 
 migrateAll();
+
+
+
+
+
 

@@ -1,15 +1,9 @@
 'use strict';
 
 /**
- * geko-meta service
+ * geko-job service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::geko-meta.geko-meta');
-
-
-
-
-
-
+module.exports = createCoreService('api::geko-job.geko-job');

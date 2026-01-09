@@ -16,3 +16,24 @@ export function sanitizeText(value) {
     .trim();
 }
 
+export function markdownToBlocks(markdown) {
+  const text = sanitizeText(markdown || '').replace(/\r\n/g, '\n').trim();
+  if (!text) {
+    return null;
+  }
+
+  return text
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .map((paragraphText) => ({
+      type: 'paragraph',
+      children: [{ type: 'text', text: paragraphText }],
+    }));
+}
+
+
+
+
+
+
