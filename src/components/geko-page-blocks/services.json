@@ -36,6 +36,11 @@
         "blue",
         "green"
       ]
+    },
+    "geko_services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::geko-service.geko-service"
     }
   }
 }

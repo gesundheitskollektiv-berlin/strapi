@@ -130,6 +130,10 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
+    geko_services: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-service.geko-service'
+    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
