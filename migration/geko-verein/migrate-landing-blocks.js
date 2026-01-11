@@ -1,12 +1,16 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { createStrapiClient } from '../shared/api.js';
 import { readMarkdownFile } from '../shared/file-helpers.js';
 import { sanitizeText, markdownToBlocks } from '../shared/utils.js';
 import { uploadImageFromSource } from '../shared/image-upload.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const STRAPI_URL = 'http://localhost:1337';
 const STRAPI_TOKEN = process.env.STRAPI_TOKEN || '';
-const GEKO_ROOT = path.resolve('../../../../geko-verein');
+const GEKO_ROOT = '/home/andi/Repositories/coderat/geko/geko-verein';
 const BLOCKS_DIR = path.join(GEKO_ROOT, 'collections/_blocks');
 const LOCALES = ['de', 'en', 'fr', 'ar', 'ro', 'tr'];
 
