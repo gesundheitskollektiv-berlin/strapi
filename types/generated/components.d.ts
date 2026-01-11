@@ -57,6 +57,16 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
   };
 }
 
+export interface GekoPageBlocksCta extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    geko_cta: Schema.Attribute.Relation<'oneToOne', 'api::geko-cta.geko-cta'>;
+  };
+}
+
 export interface GekoPageBlocksFooter extends Struct.ComponentSchema {
   collectionName: 'components_geko_page_blocks_footers';
   info: {
@@ -183,6 +193,7 @@ declare module '@strapi/strapi' {
       'geko-page-blocks.about': GekoPageBlocksAbout;
       'geko-page-blocks.calendar': GekoPageBlocksCalendar;
       'geko-page-blocks.contact': GekoPageBlocksContact;
+      'geko-page-blocks.cta': GekoPageBlocksCta;
       'geko-page-blocks.footer': GekoPageBlocksFooter;
       'geko-page-blocks.funding-project': GekoPageBlocksFundingProject;
       'geko-page-blocks.neighbours': GekoPageBlocksNeighbours;

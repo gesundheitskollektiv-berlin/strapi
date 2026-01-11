@@ -469,6 +469,65 @@ export interface ApiGekoAnnouncementGekoAnnouncement
   };
 }
 
+export interface ApiGekoCtaGekoCta extends Struct.CollectionTypeSchema {
+  collectionName: 'geko_ctas';
+  info: {
+    displayName: 'Geko - CTA';
+    pluralName: 'geko-ctas';
+    singularName: 'geko-cta';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    call_text: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    link: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    link_text: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-cta.geko-cta'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGekoJobGekoJob extends Struct.CollectionTypeSchema {
   collectionName: 'geko_jobs';
   info: {
@@ -825,6 +884,7 @@ export interface ApiGekoPageLandingGekoPageLanding
         'geko-page-blocks.neighbours',
         'geko-page-blocks.supporters',
         'geko-page-blocks.footer',
+        'geko-page-blocks.cta',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1471,6 +1531,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
+      'api::geko-cta.geko-cta': ApiGekoCtaGekoCta;
       'api::geko-job.geko-job': ApiGekoJobGekoJob;
       'api::geko-material.geko-material': ApiGekoMaterialGekoMaterial;
       'api::geko-meta.geko-meta': ApiGekoMetaGekoMeta;
