@@ -687,6 +687,12 @@ export interface ApiGekoPageAboutGekoPageAbout extends Struct.SingleTypeSchema {
       }> &
       Schema.Attribute.DefaultTo<true>;
     publishedAt: Schema.Attribute.DateTime;
+    team_image: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
