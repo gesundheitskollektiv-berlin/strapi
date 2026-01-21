@@ -57,6 +57,16 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
   };
 }
 
+export interface GekoPageBlocksCta extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    geko_cta: Schema.Attribute.Relation<'oneToOne', 'api::geko-cta.geko-cta'>;
+  };
+}
+
 export interface GekoPageBlocksFooter extends Struct.ComponentSchema {
   collectionName: 'components_geko_page_blocks_footers';
   info: {
@@ -80,6 +90,21 @@ export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
     title: Schema.Attribute.String;
     width: Schema.Attribute.Enumeration<['half', 'full']> &
       Schema.Attribute.DefaultTo<'half'>;
+  };
+}
+
+export interface GekoPageBlocksJobs extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_jobs';
+  info: {
+    displayName: 'Jobs';
+    icon: 'chartPie';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -130,6 +155,10 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
     background_color: Schema.Attribute.Enumeration<
       ['white', 'red', 'yellow', 'blue', 'green']
     >;
+    geko_services: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-service.geko-service'
+    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -179,8 +208,10 @@ declare module '@strapi/strapi' {
       'geko-page-blocks.about': GekoPageBlocksAbout;
       'geko-page-blocks.calendar': GekoPageBlocksCalendar;
       'geko-page-blocks.contact': GekoPageBlocksContact;
+      'geko-page-blocks.cta': GekoPageBlocksCta;
       'geko-page-blocks.footer': GekoPageBlocksFooter;
       'geko-page-blocks.funding-project': GekoPageBlocksFundingProject;
+      'geko-page-blocks.jobs': GekoPageBlocksJobs;
       'geko-page-blocks.neighbours': GekoPageBlocksNeighbours;
       'geko-page-blocks.news': GekoPageBlocksNews;
       'geko-page-blocks.services': GekoPageBlocksServices;

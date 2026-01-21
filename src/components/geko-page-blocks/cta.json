@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_geko_page_blocks_ctas",
+  "info": {
+    "displayName": "CTA"
+  },
+  "options": {},
+  "attributes": {
+    "geko_cta": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::geko-cta.geko-cta"
+    }
+  },
+  "config": {}
+}

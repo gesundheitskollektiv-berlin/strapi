@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "geko_ctas",
+  "info": {
+    "singularName": "geko-cta",
+    "pluralName": "geko-ctas",
+    "displayName": "Geko - CTA"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "cta_name": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true
+    },
+    "call_text": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "required": true
+    },
+    "link_text": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true
+    },
+    "background_color": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "red",
+      "enum": [
+        "white",
+        "red",
+        "yellow",
+        "blue",
+        "green"
+      ]
+    }
+  }
+}
