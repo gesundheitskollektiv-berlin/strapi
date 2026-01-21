@@ -50,6 +50,22 @@
         }
       },
       "required": true
+    },
+    "background_color": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": "red",
+      "enum": [
+        "white",
+        "red",
+        "yellow",
+        "blue",
+        "green"
+      ]
     }
   }
 }

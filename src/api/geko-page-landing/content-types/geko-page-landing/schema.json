@@ -33,7 +33,8 @@
         "geko-page-blocks.neighbours",
         "geko-page-blocks.supporters",
         "geko-page-blocks.footer",
-        "geko-page-blocks.cta"
+        "geko-page-blocks.cta",
+        "geko-page-blocks.jobs"
       ]
     }
   }

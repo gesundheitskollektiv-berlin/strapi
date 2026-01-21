@@ -93,6 +93,21 @@ export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
   };
 }
 
+export interface GekoPageBlocksJobs extends Struct.ComponentSchema {
+  collectionName: 'components_geko_page_blocks_jobs';
+  info: {
+    displayName: 'Jobs';
+    icon: 'chartPie';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface GekoPageBlocksNeighbours extends Struct.ComponentSchema {
   collectionName: 'components_geko_page_blocks_neighbours';
   info: {
@@ -196,6 +211,7 @@ declare module '@strapi/strapi' {
       'geko-page-blocks.cta': GekoPageBlocksCta;
       'geko-page-blocks.footer': GekoPageBlocksFooter;
       'geko-page-blocks.funding-project': GekoPageBlocksFundingProject;
+      'geko-page-blocks.jobs': GekoPageBlocksJobs;
       'geko-page-blocks.neighbours': GekoPageBlocksNeighbours;
       'geko-page-blocks.news': GekoPageBlocksNews;
       'geko-page-blocks.services': GekoPageBlocksServices;

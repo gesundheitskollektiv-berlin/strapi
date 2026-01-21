@@ -485,6 +485,15 @@ export interface ApiGekoCtaGekoCta extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'red'>;
     call_text: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -634,7 +643,7 @@ export interface ApiGekoMetaGekoMeta extends Struct.SingleTypeSchema {
     company: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     createdAt: Schema.Attribute.DateTime;
@@ -885,6 +894,7 @@ export interface ApiGekoPageLandingGekoPageLanding
         'geko-page-blocks.supporters',
         'geko-page-blocks.footer',
         'geko-page-blocks.cta',
+        'geko-page-blocks.jobs',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -901,6 +911,52 @@ export interface ApiGekoPageLandingGekoPageLanding
       'api::geko-page-landing.geko-page-landing'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGekoPageSupportGekoPageSupport
+  extends Struct.SingleTypeSchema {
+  collectionName: 'geko_page_supports';
+  info: {
+    displayName: '[GEKO - PAGE] Support';
+    pluralName: 'geko-page-supports';
+    singularName: 'geko-page-support';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-support.geko-page-support'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1539,6 +1595,7 @@ declare module '@strapi/strapi' {
       'api::geko-page-datenschutzerklaerung.geko-page-datenschutzerklaerung': ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung;
       'api::geko-page-impressum.geko-page-impressum': ApiGekoPageImpressumGekoPageImpressum;
       'api::geko-page-landing.geko-page-landing': ApiGekoPageLandingGekoPageLanding;
+      'api::geko-page-support.geko-page-support': ApiGekoPageSupportGekoPageSupport;
       'api::geko-service.geko-service': ApiGekoServiceGekoService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
