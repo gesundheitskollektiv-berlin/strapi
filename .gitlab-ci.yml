@@ -1,0 +1,44 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+
+variables:
+  DOCKER_DRIVER: overlay2
+  RELEASE_IMAGE_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
+  FF_NETWORK_PER_BUILD: 1
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+.build_common:
+  stage: build
+  allow_failure: false
+  script:
+    - docker build --build-arg NODE_ENV=production --network host -t $RELEASE_IMAGE_LATEST .
+    - docker push $RELEASE_IMAGE_LATEST
+
+build_master:
+  extends: .build_common
+  only:
+    refs:
+      - main
+
+build_manual:
+  extends: .build_common
+  when: manual
+  except:
+    refs:
+      - main
+
+
+# SECURITY
+sectests:
+  stage: test
+  allow_failure: true
+  script:
+    - docker pull $RELEASE_IMAGE_LATEST || true
+    - docker run $RELEASE_IMAGE_LATEST /bin/sh -c "yarn audit --level critical"
