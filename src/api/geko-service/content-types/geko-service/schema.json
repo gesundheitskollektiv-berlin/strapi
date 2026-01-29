@@ -124,6 +124,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     },
     "offer": {
@@ -131,6 +141,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
         }
       }
     },
@@ -140,6 +160,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     },
     "when": {
@@ -148,6 +178,16 @@
         "i18n": {
           "localized": true
         }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
       }
     },
     "languages": {
@@ -155,6 +195,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
         }
       }
     }
