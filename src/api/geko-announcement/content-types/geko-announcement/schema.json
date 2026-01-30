@@ -16,10 +16,6 @@
       "type": "string",
       "required": true
     },
-    "is_event": {
-      "type": "boolean",
-      "default": false
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -28,23 +24,67 @@
         "images"
       ]
     },
-    "teaser_text": {
-      "type": "text"
-    },
-    "event_date": {
-      "type": "datetime"
-    },
-    "when_text": {
-      "type": "text"
-    },
-    "where_address": {
-      "type": "text"
-    },
-    "event_host": {
-      "type": "string"
-    },
     "publish_date": {
       "type": "datetime"
+    },
+    "is_event": {
+      "type": "boolean",
+      "default": false
+    },
+    "event_date": {
+      "type": "datetime",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_event"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "when_text": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_event"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "where_address": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_event"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "event_host": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_event"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "teaser_text": {
+      "type": "text"
     },
     "content": {
       "type": "blocks"
