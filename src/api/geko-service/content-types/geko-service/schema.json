@@ -207,6 +207,21 @@
           ]
         }
       }
+    },
+    "cta": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::geko-cta.geko-cta",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
+      }
     }
   }
 }
