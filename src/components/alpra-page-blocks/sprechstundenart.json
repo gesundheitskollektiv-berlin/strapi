@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_alpra_page_blocks_sprechstundenarts",
+  "info": {
+    "displayName": "Sprechstundenart"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "days": {
+      "type": "component",
+      "component": "alpra-page-blocks.praxistag",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

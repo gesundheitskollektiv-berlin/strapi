@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "alpra_page_landings",
+  "info": {
+    "singularName": "alpra-page-landing",
+    "pluralName": "alpra-page-landings",
+    "displayName": "[ALPRA - PAGE] Landing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "alpra-page-blocks.sprechstundenart"
+      ]
+    }
+  }
+}

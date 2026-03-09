@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alpra_personnels",
+  "info": {
+    "singularName": "alpra-personnel",
+    "pluralName": "alpra-personnels",
+    "displayName": "Alpra - Personal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "position": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    }
+  }
+}

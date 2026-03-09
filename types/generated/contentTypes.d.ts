@@ -430,6 +430,69 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAlpraPageLandingAlpraPageLanding
+  extends Struct.SingleTypeSchema {
+  collectionName: 'alpra_page_landings';
+  info: {
+    displayName: '[ALPRA - PAGE] Landing';
+    pluralName: 'alpra-page-landings';
+    singularName: 'alpra-page-landing';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      ['alpra-page-blocks.sprechstundenart']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-page-landing.alpra-page-landing'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiAlpraPersonnelAlpraPersonnel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'alpra_personnels';
+  info: {
+    displayName: 'Alpra - Personal';
+    pluralName: 'alpra-personnels';
+    singularName: 'alpra-personnel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    first_name: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    last_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-personnel.alpra-personnel'
+    > &
+      Schema.Attribute.Private;
+    position: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGekoAnnouncementGekoAnnouncement
   extends Struct.CollectionTypeSchema {
   collectionName: 'geko_announcements';
@@ -1340,6 +1403,7 @@ export interface PluginUploadFile extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     ext: Schema.Attribute.String;
+    focalPoint: Schema.Attribute.JSON;
     folder: Schema.Attribute.Relation<'manyToOne', 'plugin::upload.folder'> &
       Schema.Attribute.Private;
     folderPath: Schema.Attribute.String &
@@ -1587,6 +1651,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::alpra-page-landing.alpra-page-landing': ApiAlpraPageLandingAlpraPageLanding;
+      'api::alpra-personnel.alpra-personnel': ApiAlpraPersonnelAlpraPersonnel;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
       'api::geko-cta.geko-cta': ApiGekoCtaGekoCta;
       'api::geko-job.geko-job': ApiGekoJobGekoJob;

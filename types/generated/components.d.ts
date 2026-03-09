@@ -1,5 +1,46 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AlpraPageBlocksPraxistag extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_praxistags';
+  info: {
+    displayName: 'Sprechtag';
+  };
+  attributes: {
+    day: Schema.Attribute.String;
+    sprechzeiten: Schema.Attribute.Component<'alpra-page-blocks.slot', true>;
+  };
+}
+
+export interface AlpraPageBlocksSlot extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_slots';
+  info: {
+    displayName: 'Sprechzeit';
+  };
+  attributes: {
+    annotation: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    doctors: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-personnel.alpra-personnel'
+    >;
+    end: Schema.Attribute.String;
+    start: Schema.Attribute.String;
+  };
+}
+
+export interface AlpraPageBlocksSprechstundenart
+  extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_sprechstundenarts';
+  info: {
+    displayName: 'Sprechstundenart';
+  };
+  attributes: {
+    days: Schema.Attribute.Component<'alpra-page-blocks.praxistag', true>;
+    description: Schema.Attribute.Blocks;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface GekoPageBlocksAbout extends Struct.ComponentSchema {
   collectionName: 'components_geko_page_blocks_abouts';
   info: {
@@ -205,6 +246,9 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'alpra-page-blocks.praxistag': AlpraPageBlocksPraxistag;
+      'alpra-page-blocks.slot': AlpraPageBlocksSlot;
+      'alpra-page-blocks.sprechstundenart': AlpraPageBlocksSprechstundenart;
       'geko-page-blocks.about': GekoPageBlocksAbout;
       'geko-page-blocks.calendar': GekoPageBlocksCalendar;
       'geko-page-blocks.contact': GekoPageBlocksContact;

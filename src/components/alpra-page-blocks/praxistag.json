@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_alpra_page_blocks_praxistags",
+  "info": {
+    "displayName": "Sprechtag"
+  },
+  "options": {},
+  "attributes": {
+    "day": {
+      "type": "string"
+    },
+    "sprechzeiten": {
+      "type": "component",
+      "component": "alpra-page-blocks.slot",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
