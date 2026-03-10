@@ -1,11 +1,11 @@
 {
   "collectionName": "components_alpra_page_blocks_sprechstundenarts",
   "info": {
-    "displayName": "Sprechstundenart"
+    "displayName": "Sprechstunden"
   },
   "options": {},
   "attributes": {
-    "name": {
+    "type": {
       "type": "string"
     },
     "description": {

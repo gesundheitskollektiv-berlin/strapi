@@ -14,7 +14,12 @@
     "content": {
       "type": "dynamiczone",
       "components": [
-        "alpra-page-blocks.sprechstundenart"
+        "alpra-page-blocks.welcome",
+        "alpra-page-blocks.sprechstundenart",
+        "alpra-page-blocks.contact",
+        "alpra-page-blocks.services",
+        "alpra-page-blocks.about",
+        "alpra-page-blocks.footer"
       ]
     }
   }

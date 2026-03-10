@@ -430,6 +430,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAlpraMetaAlpraMeta extends Struct.SingleTypeSchema {
+  collectionName: 'alpra_metas';
+  info: {
+    displayName: '[ALPRA] Meta';
+    pluralName: 'alpra-metas';
+    singularName: 'alpra-meta';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    company: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    fax: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-meta.alpra-meta'
+    > &
+      Schema.Attribute.Private;
+    page_banner: Schema.Attribute.Media<'images'>;
+    phone: Schema.Attribute.String;
+    postal: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    street: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAlpraPageLandingAlpraPageLanding
   extends Struct.SingleTypeSchema {
   collectionName: 'alpra_page_landings';
@@ -443,7 +478,14 @@ export interface ApiAlpraPageLandingAlpraPageLanding
   };
   attributes: {
     content: Schema.Attribute.DynamicZone<
-      ['alpra-page-blocks.sprechstundenart']
+      [
+        'alpra-page-blocks.welcome',
+        'alpra-page-blocks.sprechstundenart',
+        'alpra-page-blocks.contact',
+        'alpra-page-blocks.services',
+        'alpra-page-blocks.about',
+        'alpra-page-blocks.footer',
+      ]
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1651,6 +1693,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::alpra-meta.alpra-meta': ApiAlpraMetaAlpraMeta;
       'api::alpra-page-landing.alpra-page-landing': ApiAlpraPageLandingAlpraPageLanding;
       'api::alpra-personnel.alpra-personnel': ApiAlpraPersonnelAlpraPersonnel;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;

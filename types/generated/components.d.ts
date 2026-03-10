@@ -1,5 +1,57 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AlpraPageBlocksAbout extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    team: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-personnel.alpra-personnel'
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlpraPageBlocksContact extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_contacts';
+  info: {
+    displayName: 'Contact';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlpraPageBlocksFooter extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+  };
+}
+
 export interface AlpraPageBlocksPraxistag extends Struct.ComponentSchema {
   collectionName: 'components_alpra_page_blocks_praxistags';
   info: {
@@ -8,6 +60,24 @@ export interface AlpraPageBlocksPraxistag extends Struct.ComponentSchema {
   attributes: {
     day: Schema.Attribute.String;
     sprechzeiten: Schema.Attribute.Component<'alpra-page-blocks.slot', true>;
+  };
+}
+
+export interface AlpraPageBlocksServices extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_services';
+  info: {
+    displayName: 'Services';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -32,12 +102,30 @@ export interface AlpraPageBlocksSprechstundenart
   extends Struct.ComponentSchema {
   collectionName: 'components_alpra_page_blocks_sprechstundenarts';
   info: {
-    displayName: 'Sprechstundenart';
+    displayName: 'Sprechstunden';
   };
   attributes: {
     days: Schema.Attribute.Component<'alpra-page-blocks.praxistag', true>;
     description: Schema.Attribute.Blocks;
-    name: Schema.Attribute.String;
+    type: Schema.Attribute.String;
+  };
+}
+
+export interface AlpraPageBlocksWelcome extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_welcomes';
+  info: {
+    displayName: 'Welcome';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['white', 'red', 'yellow', 'blue', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -246,9 +334,14 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'alpra-page-blocks.about': AlpraPageBlocksAbout;
+      'alpra-page-blocks.contact': AlpraPageBlocksContact;
+      'alpra-page-blocks.footer': AlpraPageBlocksFooter;
       'alpra-page-blocks.praxistag': AlpraPageBlocksPraxistag;
+      'alpra-page-blocks.services': AlpraPageBlocksServices;
       'alpra-page-blocks.slot': AlpraPageBlocksSlot;
       'alpra-page-blocks.sprechstundenart': AlpraPageBlocksSprechstundenart;
+      'alpra-page-blocks.welcome': AlpraPageBlocksWelcome;
       'geko-page-blocks.about': GekoPageBlocksAbout;
       'geko-page-blocks.calendar': GekoPageBlocksCalendar;
       'geko-page-blocks.contact': GekoPageBlocksContact;
