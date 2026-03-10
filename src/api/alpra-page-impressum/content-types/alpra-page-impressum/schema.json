@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "alpra_page_impressum",
+  "info": {
+    "singularName": "alpra-page-impressum",
+    "pluralName": "alpra-page-impressums",
+    "displayName": "[ALPRA - PAGE] Impressum"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

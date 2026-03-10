@@ -465,6 +465,66 @@ export interface ApiAlpraMetaAlpraMeta extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAlpraPageDatenschutzerklaerungAlpraPageDatenschutzerklaerung
+  extends Struct.SingleTypeSchema {
+  collectionName: 'alpra_page_datenschutzerklaerung';
+  info: {
+    displayName: '[ALPRA - PAGE] Datenschutzerkl\u00E4rung';
+    pluralName: 'alpra-page-datenschutzerklaerungen';
+    singularName: 'alpra-page-datenschutzerklaerung';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-page-datenschutzerklaerung.alpra-page-datenschutzerklaerung'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiAlpraPageImpressumAlpraPageImpressum
+  extends Struct.SingleTypeSchema {
+  collectionName: 'alpra_page_impressum';
+  info: {
+    displayName: '[ALPRA - PAGE] Impressum';
+    pluralName: 'alpra-page-impressums';
+    singularName: 'alpra-page-impressum';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alpra-page-impressum.alpra-page-impressum'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAlpraPageLandingAlpraPageLanding
   extends Struct.SingleTypeSchema {
   collectionName: 'alpra_page_landings';
@@ -476,6 +536,11 @@ export interface ApiAlpraPageLandingAlpraPageLanding
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     content: Schema.Attribute.DynamicZone<
       [
@@ -486,16 +551,20 @@ export interface ApiAlpraPageLandingAlpraPageLanding
         'alpra-page-blocks.about',
         'alpra-page-blocks.footer',
       ]
-    >;
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::alpra-page-landing.alpra-page-landing'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1694,6 +1763,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::alpra-meta.alpra-meta': ApiAlpraMetaAlpraMeta;
+      'api::alpra-page-datenschutzerklaerung.alpra-page-datenschutzerklaerung': ApiAlpraPageDatenschutzerklaerungAlpraPageDatenschutzerklaerung;
+      'api::alpra-page-impressum.alpra-page-impressum': ApiAlpraPageImpressumAlpraPageImpressum;
       'api::alpra-page-landing.alpra-page-landing': ApiAlpraPageLandingAlpraPageLanding;
       'api::alpra-personnel.alpra-personnel': ApiAlpraPersonnelAlpraPersonnel;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
