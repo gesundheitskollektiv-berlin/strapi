@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_alpra_page_blocks_sprechstundens",
+  "info": {
+    "displayName": "Sprechstunden"
+  },
+  "options": {},
+  "attributes": {
+    "sprechstunden": {
+      "type": "component",
+      "component": "alpra-page-blocks.sprechstundenart",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

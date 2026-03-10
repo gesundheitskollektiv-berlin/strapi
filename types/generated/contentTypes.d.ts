@@ -545,11 +545,11 @@ export interface ApiAlpraPageLandingAlpraPageLanding
     content: Schema.Attribute.DynamicZone<
       [
         'alpra-page-blocks.welcome',
-        'alpra-page-blocks.sprechstundenart',
         'alpra-page-blocks.contact',
         'alpra-page-blocks.services',
         'alpra-page-blocks.about',
         'alpra-page-blocks.footer',
+        'alpra-page-blocks.sprechstunden',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

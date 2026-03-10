@@ -98,11 +98,24 @@ export interface AlpraPageBlocksSlot extends Struct.ComponentSchema {
   };
 }
 
+export interface AlpraPageBlocksSprechstunden extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_sprechstundens';
+  info: {
+    displayName: 'Sprechstunden';
+  };
+  attributes: {
+    sprechstunden: Schema.Attribute.Component<
+      'alpra-page-blocks.sprechstundenart',
+      true
+    >;
+  };
+}
+
 export interface AlpraPageBlocksSprechstundenart
   extends Struct.ComponentSchema {
   collectionName: 'components_alpra_page_blocks_sprechstundenarts';
   info: {
-    displayName: 'Sprechstunden';
+    displayName: 'Sprechstunde';
   };
   attributes: {
     days: Schema.Attribute.Component<'alpra-page-blocks.praxistag', true>;
@@ -340,6 +353,7 @@ declare module '@strapi/strapi' {
       'alpra-page-blocks.praxistag': AlpraPageBlocksPraxistag;
       'alpra-page-blocks.services': AlpraPageBlocksServices;
       'alpra-page-blocks.slot': AlpraPageBlocksSlot;
+      'alpra-page-blocks.sprechstunden': AlpraPageBlocksSprechstunden;
       'alpra-page-blocks.sprechstundenart': AlpraPageBlocksSprechstundenart;
       'alpra-page-blocks.welcome': AlpraPageBlocksWelcome;
       'geko-page-blocks.about': GekoPageBlocksAbout;
