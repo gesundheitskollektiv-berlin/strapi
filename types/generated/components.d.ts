@@ -7,16 +7,25 @@ export interface AlpraPageBlocksAbout extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
-    team: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::alpra-personnel.alpra-personnel'
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface AlpraPageBlocksAnnouncements extends Struct.ComponentSchema {
+  collectionName: 'components_alpra_page_blocks_announcements';
+  info: {
+    displayName: 'Announcements';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
     title: Schema.Attribute.String;
   };
@@ -29,7 +38,7 @@ export interface AlpraPageBlocksContact extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -47,7 +56,7 @@ export interface AlpraPageBlocksFooter extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
   };
 }
@@ -70,7 +79,7 @@ export interface AlpraPageBlocksServices extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -104,10 +113,16 @@ export interface AlpraPageBlocksSprechstunden extends Struct.ComponentSchema {
     displayName: 'Sprechstunden';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+    >;
+    navbar_link: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
     sprechstunden: Schema.Attribute.Component<
       'alpra-page-blocks.sprechstundenart',
       true
     >;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -131,7 +146,7 @@ export interface AlpraPageBlocksWelcome extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -348,6 +363,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'alpra-page-blocks.about': AlpraPageBlocksAbout;
+      'alpra-page-blocks.announcements': AlpraPageBlocksAnnouncements;
       'alpra-page-blocks.contact': AlpraPageBlocksContact;
       'alpra-page-blocks.footer': AlpraPageBlocksFooter;
       'alpra-page-blocks.praxistag': AlpraPageBlocksPraxistag;

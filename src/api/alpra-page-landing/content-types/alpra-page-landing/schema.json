@@ -28,7 +28,8 @@
         "alpra-page-blocks.services",
         "alpra-page-blocks.about",
         "alpra-page-blocks.footer",
-        "alpra-page-blocks.sprechstunden"
+        "alpra-page-blocks.sprechstunden",
+        "alpra-page-blocks.announcements"
       ]
     }
   }
