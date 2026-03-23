@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_alpra_page_blocks_slots",
+  "info": {
+    "displayName": "Sprechzeit"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    },
+    "start": {
+      "type": "string"
+    },
+    "end": {
+      "type": "string"
+    },
+    "doctors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alpra-personnel.alpra-personnel"
+    },
+    "annotation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

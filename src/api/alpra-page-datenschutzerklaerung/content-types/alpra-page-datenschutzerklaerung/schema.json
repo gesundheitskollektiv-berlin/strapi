@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "alpra_page_datenschutzerklaerung",
+  "info": {
+    "singularName": "alpra-page-datenschutzerklaerung",
+    "pluralName": "alpra-page-datenschutzerklaerungen",
+    "displayName": "[ALPRA - PAGE] Datenschutzerklärung"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}
