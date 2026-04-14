@@ -6,17 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "background_color": {
-      "type": "enumeration",
-      "default": "white",
-      "enum": [
-        "white",
-        "red",
-        "yellow",
-        "blue",
-        "green"
-      ]
-    },
     "title": {
       "type": "string",
       "required": true

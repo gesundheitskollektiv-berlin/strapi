@@ -164,9 +164,6 @@ export interface GekoPageBlocksAbout extends Struct.ComponentSchema {
     displayName: 'About';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -184,9 +181,6 @@ export interface GekoPageBlocksCalendar extends Struct.ComponentSchema {
     displayName: 'Calendar';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -202,9 +196,6 @@ export interface GekoPageBlocksContact extends Struct.ComponentSchema {
     displayName: 'Contact';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -229,11 +220,7 @@ export interface GekoPageBlocksFooter extends Struct.ComponentSchema {
   info: {
     displayName: 'Footer';
   };
-  attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
-  };
+  attributes: {};
 }
 
 export interface GekoPageBlocksFundingProject extends Struct.ComponentSchema {
@@ -257,10 +244,6 @@ export interface GekoPageBlocksJobs extends Struct.ComponentSchema {
     icon: 'chartPie';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    > &
-      Schema.Attribute.DefaultTo<'white'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -272,9 +255,6 @@ export interface GekoPageBlocksNeighbours extends Struct.ComponentSchema {
     displayName: 'Neighbours';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -291,9 +271,6 @@ export interface GekoPageBlocksNews extends Struct.ComponentSchema {
     displayName: 'Announcements';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -309,9 +286,6 @@ export interface GekoPageBlocksServices extends Struct.ComponentSchema {
     displayName: 'Services';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     geko_services: Schema.Attribute.Relation<
       'oneToMany',
       'api::geko-service.geko-service'
@@ -330,9 +304,6 @@ export interface GekoPageBlocksSupporters extends Struct.ComponentSchema {
     displayName: 'Supporters';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     supporters: Schema.Attribute.Component<
       'geko-page-blocks.funding-project',
       true
@@ -347,9 +318,6 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
     displayName: 'Welcome';
   };
   attributes: {
-    background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
-    >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &

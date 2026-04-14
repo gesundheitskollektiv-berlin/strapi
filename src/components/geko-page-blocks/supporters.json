@@ -5,16 +5,6 @@
   },
   "options": {},
   "attributes": {
-    "background_color": {
-      "type": "enumeration",
-      "enum": [
-        "white",
-        "red",
-        "yellow",
-        "blue",
-        "green"
-      ]
-    },
     "supporters": {
       "type": "component",
       "component": "geko-page-blocks.funding-project",

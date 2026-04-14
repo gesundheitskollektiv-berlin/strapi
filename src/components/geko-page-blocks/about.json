@@ -34,16 +34,6 @@
         }
       }
     },
-    "background_color": {
-      "type": "enumeration",
-      "enum": [
-        "white",
-        "red",
-        "yellow",
-        "blue",
-        "green"
-      ]
-    },
     "content": {
       "type": "blocks"
     }
