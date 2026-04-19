@@ -25,16 +25,11 @@
       },
       "components": [
         "geko-page-blocks.welcome",
-        "geko-page-blocks.about",
         "geko-page-blocks.calendar",
         "geko-page-blocks.news",
-        "geko-page-blocks.contact",
         "geko-page-blocks.services",
-        "geko-page-blocks.neighbours",
-        "geko-page-blocks.supporters",
-        "geko-page-blocks.footer",
         "geko-page-blocks.cta",
-        "geko-page-blocks.jobs"
+        "geko-page-blocks.about"
       ]
     }
   }

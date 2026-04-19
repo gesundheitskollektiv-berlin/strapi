@@ -16,24 +16,6 @@
         "images"
       ]
     },
-    "navbar_link": {
-      "type": "boolean",
-      "required": true,
-      "default": false
-    },
-    "navbar_link_title": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "navbar_link"
-            },
-            true
-          ]
-        }
-      }
-    },
     "content": {
       "type": "blocks"
     }

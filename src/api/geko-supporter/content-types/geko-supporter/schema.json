@@ -1,9 +1,15 @@
 {
-  "collectionName": "components_geko_page_blocks_funding_projects",
+  "kind": "collectionType",
+  "collectionName": "geko_supporters",
   "info": {
-    "displayName": "Funding Project"
+    "singularName": "geko-supporter",
+    "pluralName": "geko-supporters",
+    "displayName": "Geko - Supporters"
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string"
@@ -14,18 +20,19 @@
     "image": {
       "type": "media",
       "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "width": {
       "type": "enumeration",
+      "required": true,
       "default": "half",
       "enum": [
         "half",
         "full"
       ]
     }
-  },
-  "config": {}
+  }
 }

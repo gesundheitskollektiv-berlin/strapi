@@ -10,99 +10,40 @@
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "company": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "street": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "postal": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "city": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "phone": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "email": {
-      "type": "email",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "email"
     },
     "press_email": {
-      "type": "email",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "email"
     },
     "facebook": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "twitter": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "instagram": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
+      "type": "string"
     },
     "page_banner": {
       "type": "media",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "multiple": false,
       "required": false,
       "allowedTypes": [

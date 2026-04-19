@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "geko_announcement_tags",
+  "info": {
+    "singularName": "geko-announcement-tag",
+    "pluralName": "geko-announcement-tags",
+    "displayName": "Geko - Announcement-Tags"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

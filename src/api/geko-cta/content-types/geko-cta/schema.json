@@ -25,7 +25,7 @@
       "required": true
     },
     "call_text": {
-      "type": "string",
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -58,13 +58,23 @@
           "localized": false
         }
       },
-      "default": "red",
+      "default": "purple",
       "enum": [
-        "white",
-        "red",
-        "yellow",
         "blue",
-        "green"
+        "purple",
+        "yellow"
+      ]
+    },
+    "logo": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images"
       ]
     }
   }
