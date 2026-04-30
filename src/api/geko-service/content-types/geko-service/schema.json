@@ -48,7 +48,8 @@
         "i18n": {
           "localized": false
         }
-      }
+      },
+      "default": false
     },
     "slug": {
       "type": "string",
@@ -74,6 +75,16 @@
       "pluginOptions": {
         "i18n": {
           "localized": false
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            true
+          ]
         }
       }
     },
@@ -212,6 +223,24 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::geko-cta.geko-cta",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "external_link_only"
+            },
+            false
+          ]
+        }
+      }
+    },
+    "teaser_text": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
       "conditions": {
         "visible": {
           "==": [

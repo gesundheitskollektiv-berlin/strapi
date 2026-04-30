@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "geko_page_abouts",
+  "collectionName": "geko_page_angebotes",
   "info": {
-    "singularName": "geko-page-about",
-    "pluralName": "geko-page-abouts",
-    "displayName": "[GEKO - PAGE] About us"
+    "singularName": "geko-page-angebote",
+    "pluralName": "geko-page-angebotes",
+    "displayName": "[GEKO - PAGE] Angebote"
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +24,7 @@
       },
       "required": true
     },
-    "body": {
+    "intro_text": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {
@@ -46,14 +46,14 @@
         "images"
       ]
     },
-    "intro_text": {
+    "body": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "required": true
+      "required": false
     }
   }
 }

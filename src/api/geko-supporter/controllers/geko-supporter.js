@@ -1,15 +1,14 @@
 'use strict';
 
 /**
- * geko-announcement controller
+ * geko-supporter controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::geko-announcement.geko-announcement', ({ strapi }) => ({
+module.exports = createCoreController('api::geko-supporter.geko-supporter', ({ strapi }) => ({
   async find(ctx) {
     ctx.query.populate = '*';
     return super.find(ctx);
   }
 }));
-

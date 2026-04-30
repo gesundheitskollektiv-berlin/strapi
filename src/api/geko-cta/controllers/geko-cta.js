@@ -1,9 +1,10 @@
 'use strict';
 
-/**
- * geko-cta controller
- */
-
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::geko-cta.geko-cta');
+module.exports = createCoreController('api::geko-cta.geko-cta', ({ strapi }) => ({
+  async find(ctx) {
+    ctx.query.populate = '*';
+    return super.find(ctx);
+  }
+}));

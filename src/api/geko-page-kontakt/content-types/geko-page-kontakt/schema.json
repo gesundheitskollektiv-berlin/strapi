@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "geko_page_abouts",
+  "collectionName": "geko_page_kontakts",
   "info": {
-    "singularName": "geko-page-about",
-    "pluralName": "geko-page-abouts",
-    "displayName": "[GEKO - PAGE] About us"
+    "singularName": "geko-page-kontakt",
+    "pluralName": "geko-page-kontakts",
+    "displayName": "[GEKO - PAGE] Kontakt"
   },
   "options": {
     "draftAndPublish": true
@@ -24,7 +24,7 @@
       },
       "required": true
     },
-    "body": {
+    "intro_text": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {
@@ -41,12 +41,12 @@
         }
       },
       "multiple": false,
+      "required": false,
       "allowedTypes": [
-        "files",
         "images"
       ]
     },
-    "intro_text": {
+    "body": {
       "type": "blocks",
       "pluginOptions": {
         "i18n": {

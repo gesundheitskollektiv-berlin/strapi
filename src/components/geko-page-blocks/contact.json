@@ -9,34 +9,6 @@
     "title": {
       "type": "string"
     },
-    "navbar_link": {
-      "type": "boolean",
-      "required": true,
-      "default": false
-    },
-    "navbar_link_title": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "navbar_link"
-            },
-            true
-          ]
-        }
-      }
-    },
-    "background_color": {
-      "type": "enumeration",
-      "enum": [
-        "white",
-        "red",
-        "yellow",
-        "blue",
-        "green"
-      ]
-    },
     "content": {
       "type": "blocks"
     }

@@ -88,6 +88,19 @@
     },
     "content": {
       "type": "blocks"
+    },
+    "highlight": {
+      "type": "boolean",
+      "default": false
+    },
+    "slug": {
+      "type": "string",
+      "required": true
+    },
+    "geko_announcement_tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::geko-announcement-tag.geko-announcement-tag"
     }
   }
 }

@@ -635,6 +635,44 @@ export interface ApiAlpraPersonnelAlpraPersonnel
   };
 }
 
+export interface ApiGekoAnnouncementTagGekoAnnouncementTag
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'geko_announcement_tags';
+  info: {
+    displayName: 'Geko - Announcement-Tags';
+    pluralName: 'geko-announcement-tags';
+    singularName: 'geko-announcement-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-announcement-tag.geko-announcement-tag'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGekoAnnouncementGekoAnnouncement
   extends Struct.CollectionTypeSchema {
   collectionName: 'geko_announcements';
@@ -654,6 +692,11 @@ export interface ApiGekoAnnouncementGekoAnnouncement
       Schema.Attribute.Private;
     event_date: Schema.Attribute.DateTime;
     event_host: Schema.Attribute.String;
+    geko_announcement_tag: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::geko-announcement-tag.geko-announcement-tag'
+    >;
+    highlight: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     image: Schema.Attribute.Media<'images'>;
     is_event: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -664,6 +707,7 @@ export interface ApiGekoAnnouncementGekoAnnouncement
       Schema.Attribute.Private;
     publish_date: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String & Schema.Attribute.Required;
     teaser_text: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -691,15 +735,15 @@ export interface ApiGekoCtaGekoCta extends Struct.CollectionTypeSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['white', 'red', 'yellow', 'blue', 'green']
+      ['blue', 'purple', 'yellow']
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }> &
-      Schema.Attribute.DefaultTo<'red'>;
-    call_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'purple'>;
+    call_text: Schema.Attribute.Text &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -735,37 +779,13 @@ export interface ApiGekoCtaGekoCta extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::geko-cta.geko-cta'
     >;
+    logo: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiGekoJobGekoJob extends Struct.CollectionTypeSchema {
-  collectionName: 'geko_jobs';
-  info: {
-    displayName: 'Geko - Jobs';
-    pluralName: 'geko-jobs';
-    singularName: 'geko-job';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    downlads: Schema.Attribute.Media<'images' | 'files', true>;
-    job_description: Schema.Attribute.Blocks;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::geko-job.geko-job'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -833,87 +853,28 @@ export interface ApiGekoMetaGekoMeta extends Struct.SingleTypeSchema {
   options: {
     draftAndPublish: false;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
-    city: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    company: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    city: Schema.Attribute.String;
+    company: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    email: Schema.Attribute.Email &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    facebook: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    instagram: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    locale: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    facebook: Schema.Attribute.String;
+    instagram: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::geko-meta.geko-meta'
-    >;
-    page_banner: Schema.Attribute.Media<'images'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    phone: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    postal: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    press_email: Schema.Attribute.Email &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    > &
+      Schema.Attribute.Private;
+    page_banner: Schema.Attribute.Media<'images'>;
+    phone: Schema.Attribute.String;
+    postal: Schema.Attribute.String;
+    press_email: Schema.Attribute.Email;
     publishedAt: Schema.Attribute.DateTime;
-    street: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    twitter: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
+    street: Schema.Attribute.String;
+    twitter: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -936,7 +897,7 @@ export interface ApiGekoPageAboutGekoPageAbout extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    content: Schema.Attribute.Blocks &
+    body: Schema.Attribute.Blocks &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -946,26 +907,83 @@ export interface ApiGekoPageAboutGekoPageAbout extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::geko-page-about.geko-page-about'
-    >;
-    navbar_link: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Schema.Attribute.DefaultTo<true>;
-    publishedAt: Schema.Attribute.DateTime;
-    team_image: Schema.Attribute.Media<'files' | 'images'> &
+    header_image: Schema.Attribute.Media<'files' | 'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    intro_text: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-about.geko-page-about'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGekoPageAngeboteGekoPageAngebote
+  extends Struct.SingleTypeSchema {
+  collectionName: 'geko_page_angebotes';
+  info: {
+    displayName: '[GEKO - PAGE] Angebote';
+    pluralName: 'geko-page-angebotes';
+    singularName: 'geko-page-angebote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    body: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    header_image: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    intro_text: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-angebote.geko-page-angebote'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1069,6 +1087,65 @@ export interface ApiGekoPageImpressumGekoPageImpressum
   };
 }
 
+export interface ApiGekoPageKontaktGekoPageKontakt
+  extends Struct.SingleTypeSchema {
+  collectionName: 'geko_page_kontakts';
+  info: {
+    displayName: '[GEKO - PAGE] Kontakt';
+    pluralName: 'geko-page-kontakts';
+    singularName: 'geko-page-kontakt';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    body: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    header_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    intro_text: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-kontakt.geko-page-kontakt'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGekoPageLandingGekoPageLanding
   extends Struct.SingleTypeSchema {
   collectionName: 'geko_page_landing';
@@ -1090,16 +1167,11 @@ export interface ApiGekoPageLandingGekoPageLanding
     content: Schema.Attribute.DynamicZone<
       [
         'geko-page-blocks.welcome',
-        'geko-page-blocks.about',
         'geko-page-blocks.calendar',
         'geko-page-blocks.news',
-        'geko-page-blocks.contact',
         'geko-page-blocks.services',
-        'geko-page-blocks.neighbours',
-        'geko-page-blocks.supporters',
-        'geko-page-blocks.footer',
         'geko-page-blocks.cta',
-        'geko-page-blocks.jobs',
+        'geko-page-blocks.about',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1139,22 +1211,35 @@ export interface ApiGekoPageSupportGekoPageSupport
     };
   };
   attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::geko-page-support.geko-page-support'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    text: Schema.Attribute.Blocks &
+    body: Schema.Attribute.Blocks &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    header_image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    intro_text: Schema.Attribute.Blocks &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-page-support.geko-page-support'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1200,7 +1285,8 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     icon_name: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1251,6 +1337,12 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
           localized: false;
         };
       }>;
+    teaser_text: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1279,6 +1371,40 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+  };
+}
+
+export interface ApiGekoSupporterGekoSupporter
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'geko_supporters';
+  info: {
+    displayName: 'Geko - Supporters';
+    pluralName: 'geko-supporters';
+    singularName: 'geko-supporter';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-supporter.geko-supporter'
+    > &
+      Schema.Attribute.Private;
+    project_url: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    width: Schema.Attribute.Enumeration<['half', 'full']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'half'>;
   };
 }
 
@@ -1799,17 +1925,20 @@ declare module '@strapi/strapi' {
       'api::alpra-page-impressum.alpra-page-impressum': ApiAlpraPageImpressumAlpraPageImpressum;
       'api::alpra-page-landing.alpra-page-landing': ApiAlpraPageLandingAlpraPageLanding;
       'api::alpra-personnel.alpra-personnel': ApiAlpraPersonnelAlpraPersonnel;
+      'api::geko-announcement-tag.geko-announcement-tag': ApiGekoAnnouncementTagGekoAnnouncementTag;
       'api::geko-announcement.geko-announcement': ApiGekoAnnouncementGekoAnnouncement;
       'api::geko-cta.geko-cta': ApiGekoCtaGekoCta;
-      'api::geko-job.geko-job': ApiGekoJobGekoJob;
       'api::geko-material.geko-material': ApiGekoMaterialGekoMaterial;
       'api::geko-meta.geko-meta': ApiGekoMetaGekoMeta;
       'api::geko-page-about.geko-page-about': ApiGekoPageAboutGekoPageAbout;
+      'api::geko-page-angebote.geko-page-angebote': ApiGekoPageAngeboteGekoPageAngebote;
       'api::geko-page-datenschutzerklaerung.geko-page-datenschutzerklaerung': ApiGekoPageDatenschutzerklaerungGekoPageDatenschutzerklaerung;
       'api::geko-page-impressum.geko-page-impressum': ApiGekoPageImpressumGekoPageImpressum;
+      'api::geko-page-kontakt.geko-page-kontakt': ApiGekoPageKontaktGekoPageKontakt;
       'api::geko-page-landing.geko-page-landing': ApiGekoPageLandingGekoPageLanding;
       'api::geko-page-support.geko-page-support': ApiGekoPageSupportGekoPageSupport;
       'api::geko-service.geko-service': ApiGekoServiceGekoService;
+      'api::geko-supporter.geko-supporter': ApiGekoSupporterGekoSupporter;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
