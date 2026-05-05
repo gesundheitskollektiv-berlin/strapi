@@ -1287,7 +1287,7 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<false>;
-    icon_name: Schema.Attribute.String &
+    icon: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
