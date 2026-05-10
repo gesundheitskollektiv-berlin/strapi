@@ -17,6 +17,19 @@
     "is_urgent": {
       "type": "boolean",
       "default": false
+    },
+    "title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_urgent"
+            },
+            false
+          ]
+        }
+      }
     }
   }
 }
