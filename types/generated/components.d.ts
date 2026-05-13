@@ -7,7 +7,7 @@ export interface AlpraPageBlocksAbout extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -25,7 +25,7 @@ export interface AlpraPageBlocksAnnouncements extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     title: Schema.Attribute.String;
   };
@@ -38,7 +38,7 @@ export interface AlpraPageBlocksContact extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -56,7 +56,7 @@ export interface AlpraPageBlocksFooter extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
   };
 }
@@ -79,7 +79,7 @@ export interface AlpraPageBlocksServices extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -114,7 +114,7 @@ export interface AlpraPageBlocksSprechstunden extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     navbar_link: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
@@ -146,7 +146,7 @@ export interface AlpraPageBlocksWelcome extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'blue', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
