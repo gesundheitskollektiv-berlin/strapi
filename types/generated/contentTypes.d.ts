@@ -1395,8 +1395,7 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
           min: 1;
         },
         number
-      > &
-      Schema.Attribute.DefaultTo<1>;
+      >;
     project_url: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
