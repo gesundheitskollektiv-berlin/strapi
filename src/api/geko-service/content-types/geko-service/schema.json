@@ -255,6 +255,16 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "order_number": {
+      "type": "integer",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "default": 1,
+      "min": 1
     }
   }
 }

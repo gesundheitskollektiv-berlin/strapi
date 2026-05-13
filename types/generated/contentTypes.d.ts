@@ -1384,6 +1384,19 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    order_number: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     project_url: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
