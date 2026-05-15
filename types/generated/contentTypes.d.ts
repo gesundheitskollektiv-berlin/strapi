@@ -1683,6 +1683,7 @@ export interface ApiKipraPageLandingKipraPageLanding
         'kipra-page-blocks.footer',
         'kipra-page-blocks.sprechstunden',
         'kipra-page-blocks.announcements',
+        'kipra-page-blocks.termine',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

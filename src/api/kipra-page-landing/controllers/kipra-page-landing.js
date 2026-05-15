@@ -9,6 +9,7 @@ module.exports = createCoreController('api::kipra-page-landing.kipra-page-landin
         on: {
           'kipra-page-blocks.welcome': true,
           'kipra-page-blocks.announcements': true,
+          'kipra-page-blocks.termine': true,
           'kipra-page-blocks.services': true,
           'kipra-page-blocks.about': true,
           'kipra-page-blocks.contact': true,

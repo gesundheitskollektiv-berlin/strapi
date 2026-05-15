@@ -376,6 +376,17 @@ export interface KipraPageBlocksSprechstundenart
   };
 }
 
+export interface KipraPageBlocksTermine extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_termines';
+  info: {
+    displayName: 'Termine';
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface KipraPageBlocksWelcome extends Struct.ComponentSchema {
   collectionName: 'components_kipra_page_blocks_welcomes';
   info: {
@@ -423,6 +434,7 @@ declare module '@strapi/strapi' {
       'kipra-page-blocks.slot': KipraPageBlocksSlot;
       'kipra-page-blocks.sprechstunden': KipraPageBlocksSprechstunden;
       'kipra-page-blocks.sprechstundenart': KipraPageBlocksSprechstundenart;
+      'kipra-page-blocks.termine': KipraPageBlocksTermine;
       'kipra-page-blocks.welcome': KipraPageBlocksWelcome;
     }
   }

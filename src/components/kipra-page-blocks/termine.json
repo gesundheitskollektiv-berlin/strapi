@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_kipra_page_blocks_termines",
+  "info": {
+    "displayName": "Termine"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}
