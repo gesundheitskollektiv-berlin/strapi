@@ -1481,6 +1481,341 @@ export interface ApiGekoSupporterGekoSupporter
   };
 }
 
+export interface ApiKipraAnnouncementKipraAnnouncement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'kipra_announcements';
+  info: {
+    displayName: 'Kipra - Announcement';
+    pluralName: 'kipra-announcements';
+    singularName: 'kipra-announcement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_urgent: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-announcement.kipra-announcement'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraMaterialKipraMaterial
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'kipra_materials';
+  info: {
+    displayName: 'Kipra - Materials';
+    pluralName: 'kipra-materials';
+    singularName: 'kipra-material';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    file: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-material.kipra-material'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraMetaKipraMeta extends Struct.SingleTypeSchema {
+  collectionName: 'kipra_metas';
+  info: {
+    displayName: '[KIPRA] Meta';
+    pluralName: 'kipra-metas';
+    singularName: 'kipra-meta';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    city: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    company: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    fax: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-meta.kipra-meta'
+    >;
+    page_banner: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    phone: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    postal: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    street: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraPageDatenschutzerklaerungKipraPageDatenschutzerklaerung
+  extends Struct.SingleTypeSchema {
+  collectionName: 'kipra_page_datenschutzerklaerung';
+  info: {
+    displayName: '[KIPRA - PAGE] Datenschutzerkl\u00E4rung';
+    pluralName: 'kipra-page-datenschutzerklaerungen';
+    singularName: 'kipra-page-datenschutzerklaerung';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-page-datenschutzerklaerung.kipra-page-datenschutzerklaerung'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraPageImpressumKipraPageImpressum
+  extends Struct.SingleTypeSchema {
+  collectionName: 'kipra_page_impressum';
+  info: {
+    displayName: '[KIPRA - PAGE] Impressum';
+    pluralName: 'kipra-page-impressums';
+    singularName: 'kipra-page-impressum';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-page-impressum.kipra-page-impressum'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraPageLandingKipraPageLanding
+  extends Struct.SingleTypeSchema {
+  collectionName: 'kipra_page_landings';
+  info: {
+    displayName: '[KIPRA - PAGE] Landing';
+    pluralName: 'kipra-page-landings';
+    singularName: 'kipra-page-landing';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      [
+        'kipra-page-blocks.welcome',
+        'kipra-page-blocks.contact',
+        'kipra-page-blocks.services',
+        'kipra-page-blocks.about',
+        'kipra-page-blocks.footer',
+        'kipra-page-blocks.sprechstunden',
+        'kipra-page-blocks.announcements',
+        'kipra-page-blocks.termine',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-page-landing.kipra-page-landing'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiKipraPersonnelKipraPersonnel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'kipra_personnels';
+  info: {
+    displayName: 'Kipra - Personal';
+    pluralName: 'kipra-personnels';
+    singularName: 'kipra-personnel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    first_name: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    last_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-personnel.kipra-personnel'
+    > &
+      Schema.Attribute.Private;
+    position: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -2013,6 +2348,13 @@ declare module '@strapi/strapi' {
       'api::geko-page-support.geko-page-support': ApiGekoPageSupportGekoPageSupport;
       'api::geko-service.geko-service': ApiGekoServiceGekoService;
       'api::geko-supporter.geko-supporter': ApiGekoSupporterGekoSupporter;
+      'api::kipra-announcement.kipra-announcement': ApiKipraAnnouncementKipraAnnouncement;
+      'api::kipra-material.kipra-material': ApiKipraMaterialKipraMaterial;
+      'api::kipra-meta.kipra-meta': ApiKipraMetaKipraMeta;
+      'api::kipra-page-datenschutzerklaerung.kipra-page-datenschutzerklaerung': ApiKipraPageDatenschutzerklaerungKipraPageDatenschutzerklaerung;
+      'api::kipra-page-impressum.kipra-page-impressum': ApiKipraPageImpressumKipraPageImpressum;
+      'api::kipra-page-landing.kipra-page-landing': ApiKipraPageLandingKipraPageLanding;
+      'api::kipra-personnel.kipra-personnel': ApiKipraPersonnelKipraPersonnel;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

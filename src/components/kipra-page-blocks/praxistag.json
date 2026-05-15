@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_kipra_page_blocks_praxistags",
+  "info": {
+    "displayName": "Sprechtag"
+  },
+  "options": {},
+  "attributes": {
+    "day": {
+      "type": "string"
+    },
+    "sprechzeiten": {
+      "type": "component",
+      "component": "kipra-page-blocks.slot",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

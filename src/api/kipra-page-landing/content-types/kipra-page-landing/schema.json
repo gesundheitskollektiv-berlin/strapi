@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "kipra_page_landings",
+  "info": {
+    "singularName": "kipra-page-landing",
+    "pluralName": "kipra-page-landings",
+    "displayName": "[KIPRA - PAGE] Landing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "content": {
+      "type": "dynamiczone",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "components": [
+        "kipra-page-blocks.welcome",
+        "kipra-page-blocks.contact",
+        "kipra-page-blocks.services",
+        "kipra-page-blocks.about",
+        "kipra-page-blocks.footer",
+        "kipra-page-blocks.sprechstunden",
+        "kipra-page-blocks.announcements",
+        "kipra-page-blocks.termine"
+      ]
+    }
+  }
+}

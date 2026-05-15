@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_kipra_page_blocks_termines",
+  "info": {
+    "displayName": "Termine"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "background_color": {
+      "type": "enumeration",
+      "default": "white",
+      "enum": [
+        "yellow",
+        "white",
+        "purple",
+        "green"
+      ]
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "navbar_link": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "navbar_link_title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "navbar_link"
+            },
+            true
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}

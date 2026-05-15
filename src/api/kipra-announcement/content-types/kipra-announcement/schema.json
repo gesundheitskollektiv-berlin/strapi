@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kipra_announcements",
+  "info": {
+    "singularName": "kipra-announcement",
+    "pluralName": "kipra-announcements",
+    "displayName": "Kipra - Announcement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "content": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "is_urgent": {
+      "type": "boolean",
+      "default": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_urgent"
+            },
+            false
+          ]
+        }
+      }
+    }
+  }
+}

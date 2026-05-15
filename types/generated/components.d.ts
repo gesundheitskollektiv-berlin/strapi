@@ -237,6 +237,182 @@ export interface GekoPageBlocksWelcome extends Struct.ComponentSchema {
   };
 }
 
+export interface KipraPageBlocksAbout extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksAnnouncements extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_announcements';
+  info: {
+    displayName: 'Announcements';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksContact extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_contacts';
+  info: {
+    displayName: 'Contact';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksFooter extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+  };
+}
+
+export interface KipraPageBlocksPraxistag extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_praxistags';
+  info: {
+    displayName: 'Sprechtag';
+  };
+  attributes: {
+    day: Schema.Attribute.String;
+    sprechzeiten: Schema.Attribute.Component<'kipra-page-blocks.slot', true>;
+  };
+}
+
+export interface KipraPageBlocksServices extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_services';
+  info: {
+    displayName: 'Services';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksSlot extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_slots';
+  info: {
+    displayName: 'Sprechzeit';
+  };
+  attributes: {
+    annotation: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    doctors: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::kipra-personnel.kipra-personnel'
+    >;
+    end: Schema.Attribute.String;
+    start: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksSprechstunden extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_sprechstundens';
+  info: {
+    displayName: 'Sprechstunden';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    navbar_link: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    sprechstunden: Schema.Attribute.Component<
+      'kipra-page-blocks.sprechstundenart',
+      true
+    >;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksSprechstundenart
+  extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_sprechstundenarts';
+  info: {
+    displayName: 'Sprechstunde';
+  };
+  attributes: {
+    days: Schema.Attribute.Component<'kipra-page-blocks.praxistag', true>;
+    description: Schema.Attribute.Blocks;
+    type: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksTermine extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_termines';
+  info: {
+    displayName: 'Termine';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface KipraPageBlocksWelcome extends Struct.ComponentSchema {
+  collectionName: 'components_kipra_page_blocks_welcomes';
+  info: {
+    displayName: 'Welcome';
+  };
+  attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    >;
+    content: Schema.Attribute.Blocks;
+    navbar_link: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    navbar_link_title: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -257,6 +433,17 @@ declare module '@strapi/strapi' {
       'geko-page-blocks.news': GekoPageBlocksNews;
       'geko-page-blocks.services': GekoPageBlocksServices;
       'geko-page-blocks.welcome': GekoPageBlocksWelcome;
+      'kipra-page-blocks.about': KipraPageBlocksAbout;
+      'kipra-page-blocks.announcements': KipraPageBlocksAnnouncements;
+      'kipra-page-blocks.contact': KipraPageBlocksContact;
+      'kipra-page-blocks.footer': KipraPageBlocksFooter;
+      'kipra-page-blocks.praxistag': KipraPageBlocksPraxistag;
+      'kipra-page-blocks.services': KipraPageBlocksServices;
+      'kipra-page-blocks.slot': KipraPageBlocksSlot;
+      'kipra-page-blocks.sprechstunden': KipraPageBlocksSprechstunden;
+      'kipra-page-blocks.sprechstundenart': KipraPageBlocksSprechstundenart;
+      'kipra-page-blocks.termine': KipraPageBlocksTermine;
+      'kipra-page-blocks.welcome': KipraPageBlocksWelcome;
     }
   }
 }

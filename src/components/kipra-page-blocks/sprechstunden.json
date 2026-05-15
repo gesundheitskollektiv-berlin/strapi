@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_kipra_page_blocks_sprechstundens",
+  "info": {
+    "displayName": "Sprechstunden"
+  },
+  "options": {},
+  "attributes": {
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "yellow",
+        "white",
+        "purple",
+        "green"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "sprechstunden": {
+      "type": "component",
+      "component": "kipra-page-blocks.sprechstundenart",
+      "repeatable": true
+    },
+    "navbar_link": {
+      "type": "boolean",
+      "default": false
+    },
+    "navbar_link_title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "navbar_link"
+            },
+            true
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}
