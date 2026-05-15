@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_kipra_page_blocks_services",
+  "info": {
+    "displayName": "Services"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "navbar_link": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "navbar_link_title": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "navbar_link"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "yellow",
+        "white",
+        "purple",
+        "green",
+        "red"
+      ]
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

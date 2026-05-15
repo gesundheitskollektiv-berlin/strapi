@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_kipra_page_blocks_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "yellow",
+        "white",
+        "purple",
+        "green",
+        "red"
+      ]
+    }
+  }
+}

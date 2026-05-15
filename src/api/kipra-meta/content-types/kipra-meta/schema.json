@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "kipra_metas",
+  "info": {
+    "singularName": "kipra-meta",
+    "pluralName": "kipra-metas",
+    "displayName": "[KIPRA] Meta"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "postal": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "fax": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "page_banner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

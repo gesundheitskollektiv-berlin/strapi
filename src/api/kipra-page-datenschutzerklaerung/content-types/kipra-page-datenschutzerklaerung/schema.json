@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "kipra_page_datenschutzerklaerung",
+  "info": {
+    "singularName": "kipra-page-datenschutzerklaerung",
+    "pluralName": "kipra-page-datenschutzerklaerungen",
+    "displayName": "[KIPRA - PAGE] Datenschutzerklärung"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}

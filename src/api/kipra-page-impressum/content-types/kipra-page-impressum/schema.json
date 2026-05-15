@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "kipra_page_impressum",
+  "info": {
+    "singularName": "kipra-page-impressum",
+    "pluralName": "kipra-page-impressums",
+    "displayName": "[KIPRA - PAGE] Impressum"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    }
+  }
+}
