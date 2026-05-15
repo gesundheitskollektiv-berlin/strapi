@@ -8,6 +8,16 @@
     "title": {
       "type": "string"
     },
+    "background_color": {
+      "type": "enumeration",
+      "enum": [
+        "yellow",
+        "white",
+        "purple",
+        "green"
+      ],
+      "default": "white"
+    },
     "content": {
       "type": "blocks"
     }

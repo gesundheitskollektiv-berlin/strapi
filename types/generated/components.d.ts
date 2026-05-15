@@ -7,7 +7,7 @@ export interface AlpraPageBlocksAbout extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -25,7 +25,7 @@ export interface AlpraPageBlocksAnnouncements extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     title: Schema.Attribute.String;
   };
@@ -38,7 +38,7 @@ export interface AlpraPageBlocksContact extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -56,7 +56,7 @@ export interface AlpraPageBlocksFooter extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
   };
 }
@@ -79,7 +79,7 @@ export interface AlpraPageBlocksServices extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -114,7 +114,7 @@ export interface AlpraPageBlocksSprechstunden extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     navbar_link: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
@@ -146,7 +146,7 @@ export interface AlpraPageBlocksWelcome extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -244,7 +244,7 @@ export interface KipraPageBlocksAbout extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -262,7 +262,7 @@ export interface KipraPageBlocksAnnouncements extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     title: Schema.Attribute.String;
   };
@@ -275,7 +275,7 @@ export interface KipraPageBlocksContact extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -293,7 +293,7 @@ export interface KipraPageBlocksFooter extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
   };
 }
@@ -316,7 +316,7 @@ export interface KipraPageBlocksServices extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
@@ -351,7 +351,7 @@ export interface KipraPageBlocksSprechstunden extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     navbar_link: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     navbar_link_title: Schema.Attribute.String;
@@ -382,6 +382,10 @@ export interface KipraPageBlocksTermine extends Struct.ComponentSchema {
     displayName: 'Termine';
   };
   attributes: {
+    background_color: Schema.Attribute.Enumeration<
+      ['yellow', 'white', 'purple', 'green']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
     content: Schema.Attribute.Blocks;
     title: Schema.Attribute.String;
   };
@@ -394,7 +398,7 @@ export interface KipraPageBlocksWelcome extends Struct.ComponentSchema {
   };
   attributes: {
     background_color: Schema.Attribute.Enumeration<
-      ['yellow', 'white', 'purple', 'green', 'red']
+      ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
     navbar_link: Schema.Attribute.Boolean &
