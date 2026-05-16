@@ -1,35 +1,41 @@
-app = "geko-cms"
-primary_region = "fra"
+# fly.toml app configuration file generated for strapi-ftieeg on 2026-05-16T08:49:11Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'strapi-ftieeg'
+primary_region = 'ams'
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = 'Dockerfile'
 
 [env]
-  NODE_ENV = "production"
-  HOST = "0.0.0.0"
-  PORT = "1337"
-  DATABASE_CLIENT = "sqlite"
-  # Absolute path — SQLite file lives on the mounted volume (config/database.js)
-  DATABASE_FILENAME = "/data/strapi.db"
+  DATABASE_CLIENT = 'sqlite'
+  DATABASE_FILENAME = '/data/strapi.db'
+  HOST = '0.0.0.0'
+  NODE_ENV = 'production'
+  PORT = '1337'
 
 [[mounts]]
-  source = "strapi_data"
-  destination = "/data"
+  source = 'strapi_data'
+  destination = '/data'
 
 [http_service]
-  internal_port = 1337
+  internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
 
-[[http_service.checks]]
-  interval = "15s"
-  timeout = "10s"
-  grace_period = "60s"
-  method = "GET"
-  path = "/admin"
+  [[http_service.checks]]
+    interval = '15s'
+    timeout = '10s'
+    grace_period = '1m0s'
+    method = 'GET'
+    path = '/admin'
 
 [[vm]]
-  memory = "1gb"
+  memory = '1gb'
+  cpu_kind = 'shared'
   cpus = 1
+  memory_mb = 256
