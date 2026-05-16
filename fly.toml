@@ -1,4 +1,4 @@
-app = "geko-cms:want"
+app = "geko-cms"
 primary_region = "fra"
 
 [build]
