@@ -1,0 +1,35 @@
+app = "geko-cms:want"
+primary_region = "fra"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  HOST = "0.0.0.0"
+  PORT = "1337"
+  DATABASE_CLIENT = "sqlite"
+  # Absolute path — SQLite file lives on the mounted volume (config/database.js)
+  DATABASE_FILENAME = "/data/strapi.db"
+
+[[mounts]]
+  source = "strapi_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 1337
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  interval = "15s"
+  timeout = "10s"
+  grace_period = "60s"
+  method = "GET"
+  path = "/admin"
+
+[[vm]]
+  memory = "1gb"
+  cpus = 1
