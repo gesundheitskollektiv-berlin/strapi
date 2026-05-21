@@ -12,7 +12,7 @@ module.exports = createCoreController('api::kipra-page-landing.kipra-page-landin
           'kipra-page-blocks.termine': true,
           'kipra-page-blocks.services': true,
           'kipra-page-blocks.about': true,
-          'kipra-page-blocks.contact': true,
+          'kipra-page-blocks.contact': { populate: { images: true } },
           'kipra-page-blocks.footer': true,
           'kipra-page-blocks.sprechstunden': {
             populate: {

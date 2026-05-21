@@ -11,7 +11,7 @@ module.exports = createCoreController('api::alpra-page-landing.alpra-page-landin
           'alpra-page-blocks.announcements': true,
           'alpra-page-blocks.services': true,
           'alpra-page-blocks.about': true,
-          'alpra-page-blocks.contact': true,
+          'alpra-page-blocks.contact': { populate: { images: true } },
           'alpra-page-blocks.footer': true,
           'alpra-page-blocks.sprechstunden': {
             populate: {
