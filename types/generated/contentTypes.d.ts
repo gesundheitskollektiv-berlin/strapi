@@ -1348,6 +1348,10 @@ export interface ApiGekoServiceGekoService extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<false>;
+    geko_supporters: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::geko-supporter.geko-supporter'
+    >;
     icon: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

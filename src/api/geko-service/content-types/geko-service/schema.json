@@ -264,6 +264,11 @@
         }
       },
       "min": 1
+    },
+    "geko_supporters": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::geko-supporter.geko-supporter"
     }
   }
 }
