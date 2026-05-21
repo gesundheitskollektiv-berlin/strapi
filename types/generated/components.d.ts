@@ -41,6 +41,7 @@ export interface AlpraPageBlocksContact extends Struct.ComponentSchema {
       ['yellow', 'white', 'purple', 'green', 'red']
     >;
     content: Schema.Attribute.Blocks;
+    images: Schema.Attribute.Media<'images' | 'files', true>;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
@@ -278,6 +279,7 @@ export interface KipraPageBlocksContact extends Struct.ComponentSchema {
       ['yellow', 'white', 'purple', 'green']
     >;
     content: Schema.Attribute.Blocks;
+    images: Schema.Attribute.Media<'images' | 'files', true>;
     navbar_link: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
