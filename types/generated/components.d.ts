@@ -416,7 +416,7 @@ export interface KipraPageBlocksWelcome extends Struct.ComponentSchema {
 }
 
 declare module '@strapi/strapi' {
-  export module Public {
+  export namespace Public {
     export interface ComponentSchemas {
       'alpra-page-blocks.about': AlpraPageBlocksAbout;
       'alpra-page-blocks.announcements': AlpraPageBlocksAnnouncements;
